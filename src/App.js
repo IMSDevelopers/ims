@@ -1,6 +1,15 @@
 import React from 'react';
-import Login from './Login';
 import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import AdminLogin from "./AdminLogin";
+import Login from "./Login";
+import Home from "./Home";
+import NotFound from './NotFound';
+import MyRouter from './MyRouter';
 
 function App() {
   return (
@@ -14,10 +23,9 @@ function App() {
 />
     </head>
     <div>
-      <Login />
-    </div>
+       <MyRouter /> 
+    </div>           
     </React.Fragment>
-    
   );
 }
 
