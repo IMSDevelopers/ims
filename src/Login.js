@@ -1,60 +1,187 @@
-import React from 'react';
+import React from "react";
 import bg from "./assets/CBU-image.jpg";
 import Navbar from './components/Navbar';
 import CBUlogo from './assets/cbulogo.png';
-import './Login.css'
+import { withRouter } from "react-router";
+import UserStore from "./stores/UserStore";
+import { observer } from 'mobx-react';
 
-import {
-    BrowserRouter as Router,
-    Link,
-    useHistory
-  } from "react-router-dom";
+class Login extends React.Component {
 
-import './MyRouter';
+    constructor() {
+        super()
+        this.state = {
+            username: '',
+            password: ''
+        }
+    }
 
 
-function Login() {
+    setInputValue(property, val) {
+        //val = val.trim();
+        if (val.length > 8) { //change the input string size
+            return;
+        }
+        this.setState({
+            [property]: val
+        })
 
-    let history = useHistory()
+    }
 
-    return (
-           <Router>
-            <div style= {{
+    resetForm() {
+        this.setState({
+            username: '',
+            password: ''
+        })
+    }
+
+    doLogin() {
+
+        if (!this.state.username) {
+            return;
+        }
+        if (!this.state.password) {
+            return;
+        }
+
+        if (this.state.username == 'admin' && this.state.password == 'admin') {
+            this.routingFunction();
+        } else {
+            alert('Invalid Credentials')
+        }
+
+        // try{
+
+        //     let res = await fetch('/login', {
+        //         method: 'post',
+        //         header: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify({
+        //             username: this.state.username,
+        //             password: this.state.password
+        //         })
+        //     })
+
+        //     let result = await res.json();
+
+        //     if(result && result.success) {
+        //         UserStore.isLoggedIn = true;
+        //         UserStore.username=result.username;
+        //     } else if (result && result.success == false){
+        //         this.resetForm();
+        //         alert(result.msg);
+        //     }
+
+        // } catch(e){
+        //     console.log(e);
+        //     this.resetForm();
+        // }
+    }
+
+    routingFunction = e => {
+        this.props.history.push('/home')
+    }
+
+    async componentDidMount() {
+        try {
+
+            let res = await fetch('/isLoggedIn', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            let result = await res.json();
+
+            if (result && result.success) {
+                UserStore.loading = false;
+                UserStore.isLoggedIn = true;
+                UserStore.username = result.username;
+
+            } else {
+                UserStore.loading = false;
+                UserStore.isLoggedIn = false;
+
+            }
+
+        } catch (e) {
+            UserStore.loading = false;
+            UserStore.isLoggedIn = false;
+        }
+    }
+
+
+    render() {
+
+        return (
+            <div style={{
                 backgroundImage: `url(${bg})`,
                 backgroundPosition: 'center',
-                backgroundSize: 'cover', 
-                backgroundRepeat: 'no-repeat'}}>
-            
-            <div  class="vh-100">
-                <Navbar />                 
-                <div style ={{marginTop: "15vh"}} class="d-flex justify-content-center" >
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat'
+            }}>
 
+                <div class="vh-100">
+                    <Navbar />
+                    <div style={{ marginTop: "8vh" }} class="d-flex justify-content-center" >
+                        <div class='col-md-3'>
+                            
+                            <div style={{ backgroundColor: '#bf8d3c', borderColor: 'black', border: '3px solid' }} class="card">
+                                <h4 style={{ color: 'white', }} class="d-flex justify-content-center">Login</h4>
+                            </div>
 
-                    <div class='col-md-3'>
-
-                        
-                        <div class="card text-center">
-                            <a href="https://calbaptist.edu/">
-                                <img src={CBUlogo} class="card-img-top small-img"  alt="Login"/>
+                            <div class="card text-center">
+                            
+                                <a href="https://calbaptist.edu/">
+                                    <img src={CBUlogo} class="card-img-top small-img" alt="Login" />
                                 </a>
-                            <div class="card-body">
-                                <div class="d-grid gap-2">
-                                    
-                                    <button class="btn btn-primary btn-lg " href="" type="button">Student Login</button>
-                                    <button class="btn btn-warning btn-lg" type="button" onClick={() => {history.push('/adminlogin')}}>
-                                        Admin Login 
-                                        </button>
-                                </div>
+                                <form class="card-body">
+                                    <div class="d-grid gap-4">
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control"
+                                                placeholder="CBU Email"
+                                                value={this.state.username ? this.state.username : ''}
+                                                onChange={(val) => this.setInputValue('username', val.target.value)}
+                                                required />
+                                        </div>
+                                        <div class="input-group">
+                                            <input
+                                                class="form-control"
+                                                placeholder="Password"
+                                                type="password"
+                                                value={this.state.password ? this.state.password : ''}
+                                                onChange={(val) => this.setInputValue('password', val.target.value)}
+                                                required />
+                                        </div>
 
+                                        <button
+                                            class="btn btn-warning btn-lg"
+                                            type="submit"
+                                            onClick={() => { this.doLogin() }}>
+                                            Submit
+                                        </button>
+
+                                        <button
+                                            class="btn btn-primary btn-lg"
+                                            type="button"
+                                            onClick={() => { this.props.history.push('/signup') }}>
+                                            Sign Up
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    </div>
-                </div>   
                 </div>
-                </Router>
-          
-    )
+            </div>
+        )
+    }
 }
 
-export default Login;
+
+export default withRouter(observer(Login));
