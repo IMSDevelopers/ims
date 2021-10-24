@@ -1,48 +1,9 @@
 import React from 'react';
 import '../styles/App.css'
-import UserStore from '../stores/UserStore';
-import { FiLogOut } from 'react-icons/fi';
-import { observer } from 'mobx-react';
 
-class Navbar extends React.Component{
-  
-  async doLogout() {
-    try{
-
-        let res = await fetch('/logout', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        });
-
-        let result = await res.json();
-
-        if (result && result.success){
-            UserStore.isLoggedIn = false; 
-            UserStore.username=''; 
-        } 
-
-    } catch(e){
-        console.log(e);
-    }
-  }
-
+class Navbar extends React.Component {
 
   render(){
-
-    //console.log(UserStore)
-
-    const renderLogoutButton = () => {
-      if(UserStore.isLoggedIn){
-        return (<button class="btn btn-warning me-2" onClick={() => this.doLogout()} >
-                    <FiLogOut/>
-                    </button>)
-      }else{
-        return ('')
-      }
-    }
 
     return (
 
@@ -70,7 +31,6 @@ class Navbar extends React.Component{
               <form className="d-flex">
                 {/* <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                 <button class="btn btn-outline-success me-2" type="submit">Search</button> */}
-                { renderLogoutButton() }
             </form>
             </div>
         </div>
@@ -81,4 +41,4 @@ class Navbar extends React.Component{
 }
 
 
-export default observer(Navbar);
+export default Navbar;

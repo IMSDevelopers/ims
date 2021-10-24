@@ -2,9 +2,6 @@ import React from "react";
 import bg from "./assets/CBU-image.jpg";
 import Navbar from './components/Navbar';
 import CBUlogo from './assets/cbulogo.png';
-import { withRouter } from "react-router";
-import UserStore from "./stores/UserStore";
-import { observer } from 'mobx-react';
 
 class Login extends React.Component {
 
@@ -52,36 +49,6 @@ class Login extends React.Component {
 
     routingFunction = e => {
         this.props.history.push('/home')
-    }
-
-    async componentDidMount() {
-        try {
-
-            let res = await fetch('/isLoggedIn', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            let result = await res.json();
-
-            if (result && result.success) {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = true;
-                UserStore.username = result.username;
-
-            } else {
-                UserStore.loading = false;
-                UserStore.isLoggedIn = false;
-
-            }
-
-        } catch (e) {
-            UserStore.loading = false;
-            UserStore.isLoggedIn = false;
-        }
     }
 
     render() {
@@ -158,4 +125,4 @@ class Login extends React.Component {
 }
 
 
-export default withRouter(observer(Login));
+export default Login;
