@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css'
+import '../styles/App.css'
 import UserStore from '../stores/UserStore';
 import { FiLogOut } from 'react-icons/fi';
 import { observer } from 'mobx-react';

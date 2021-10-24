@@ -2,7 +2,7 @@ import React from 'react';
 import bg from "./assets/CBU-image.jpg";
 import Navbar from './components/Navbar';
 import CBUlogo from './assets/cbulogo.png';
-import './Login.css'
+import './styles/Login.css'
 
 import {
     BrowserRouter as Router,

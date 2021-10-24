@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css'
+import './styles/App.css'
 import MyRouter from './MyRouter';
 
 class App extends React.Component {

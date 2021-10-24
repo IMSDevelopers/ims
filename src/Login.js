@@ -16,7 +16,6 @@ class Login extends React.Component {
         }
     }
 
-
     setInputValue(property, val) {
         //val = val.trim();
         if (val.length > 8) { //change the input string size
@@ -49,35 +48,6 @@ class Login extends React.Component {
         } else {
             alert('Invalid Credentials')
         }
-
-        // try{
-
-        //     let res = await fetch('/login', {
-        //         method: 'post',
-        //         header: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify({
-        //             username: this.state.username,
-        //             password: this.state.password
-        //         })
-        //     })
-
-        //     let result = await res.json();
-
-        //     if(result && result.success) {
-        //         UserStore.isLoggedIn = true;
-        //         UserStore.username=result.username;
-        //     } else if (result && result.success == false){
-        //         this.resetForm();
-        //         alert(result.msg);
-        //     }
-
-        // } catch(e){
-        //     console.log(e);
-        //     this.resetForm();
-        // }
     }
 
     routingFunction = e => {
@@ -114,9 +84,7 @@ class Login extends React.Component {
         }
     }
 
-
     render() {
-
         return (
             <div style={{
                 backgroundImage: `url(${bg})`,
@@ -134,7 +102,7 @@ class Login extends React.Component {
                                 <h4 style={{ color: 'white', }} class="d-flex justify-content-center">Login</h4>
                             </div>
 
-                            <div clasName="card text-center">
+                            <div className="card text-center">
                             
                                 <a href="https://calbaptist.edu/">
                                     <img src={CBUlogo} class="card-img-top small-img" alt="Login" />
