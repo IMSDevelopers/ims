@@ -1,32 +1,46 @@
-import { Container } from "react-bootstrap";
-import Navbar from "./components/Navbar";
 import React from "react";
+import Navbar from "./components/Navbar";
+import Card from "./components/Card";
+import { dummy } from './dummy.js';
 
 function Home() {
-    return(
+    return (
         <div>
-            <Navbar/>
-            <div class="container">
-                <div class="row g-3" style={{paddingTop: "20px"}}>
-                        <div class="col-md-8">
-                            <h1>College of Engineering Inventory</h1>
+            <Navbar />
+            <div className="container">
+                <div className="row g-3" style={{ paddingTop: "20px" }}>
+                    <div className="col-md-8">
+                        <h1>College of Engineering Inventory</h1>
+                    </div>
+                    <div className="col-md-4" style={{ paddingTop: "10px" }}>
+                        <div className="input-group">
+                            <span className="input-group-text">Filters: </span>
+                            <select className="form-select">
+                                <option value="1">Show All</option>
+                                <option value="2"> Cables</option>
+                                <option value="3"> Hardware</option>
+                                <option value="4"> Miscellaneous</option>
+                            </select>
                         </div>
-                        <div class="col-md-4" style={{paddingTop: "10px"}}>
-                            <div class="input-group">
-                                <span class="input-group-text">Filters: </span>
-                                <select class="form-select">
-                                    <option value="1" selected>Show All</option>
-                                    <option value="2"> Cables</option>
-                                    <option value="3"> Hardware</option>
-                                    <option value="4"> Miscellaneous</option>
-                                </select>
+                    </div>
+
+                </div>
+
+                <div className="row">
+                    {dummy.map(item => {
+                        return (
+                            <div className="col-md-2 align-self">
+                                <div className="mb-4">
+                                    <Card description={item.description} quantity={item.quantity} url={item.url} />
+                                </div>
                             </div>
-                        </div>
+
+                        );
+                    })}
                 </div>
             </div>
         </div>
-    )
+    );
 }
-
 
 export default Home;
