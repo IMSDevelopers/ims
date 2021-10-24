@@ -44,7 +44,7 @@ class Login extends React.Component {
             return;
         }
 
-        if (this.state.username == 'admin' && this.state.password == 'admin') {
+        if (this.state.username === 'admin' && this.state.password === 'admin') {
             this.routingFunction();
         } else {
             alert('Invalid Credentials')
@@ -125,7 +125,7 @@ class Login extends React.Component {
                 backgroundRepeat: 'no-repeat'
             }}>
 
-                <div class="vh-100">
+                <div className="vh-100">
                     <Navbar />
                     <div style={{ marginTop: "8vh" }} class="d-flex justify-content-center" >
                         <div class='col-md-3'>
@@ -134,24 +134,24 @@ class Login extends React.Component {
                                 <h4 style={{ color: 'white', }} class="d-flex justify-content-center">Login</h4>
                             </div>
 
-                            <div class="card text-center">
+                            <div clasName="card text-center">
                             
                                 <a href="https://calbaptist.edu/">
                                     <img src={CBUlogo} class="card-img-top small-img" alt="Login" />
                                 </a>
-                                <form class="card-body">
-                                    <div class="d-grid gap-4">
-                                        <div class="input-group">
+                                <form className="card-body">
+                                    <div className="d-grid gap-4">
+                                        <div className="input-group">
                                             <input
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="CBU Email"
                                                 value={this.state.username ? this.state.username : ''}
                                                 onChange={(val) => this.setInputValue('username', val.target.value)}
                                                 required />
                                         </div>
-                                        <div class="input-group">
+                                        <div className="input-group">
                                             <input
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Password"
                                                 type="password"
                                                 value={this.state.password ? this.state.password : ''}
@@ -160,17 +160,23 @@ class Login extends React.Component {
                                         </div>
 
                                         <button
-                                            class="btn btn-warning btn-lg"
+                                            className="btn btn-warning btn-lg"
                                             type="submit"
                                             onClick={() => { this.doLogin() }}>
                                             Submit
                                         </button>
 
                                         <button
-                                            class="btn btn-primary btn-lg"
+                                            className="btn btn-primary btn-lg"
                                             type="button"
                                             onClick={() => { this.props.history.push('/signup') }}>
                                             Sign Up
+                                        </button>
+                                        <button
+                                            className="btn btn-primary btn-lg"
+                                            type="button"
+                                            onClick={() => { this.props.history.push('/home') }}>
+                                            Goto Home
                                         </button>
                                     </div>
                                 </form>

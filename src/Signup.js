@@ -6,16 +6,12 @@ import './Login.css'
 
 import {
     BrowserRouter as Router,
-    Link,
-    useHistory
 } from "react-router-dom";
 
 import './MyRouter';
 
 
 function Signup() {
-
-    let history = useHistory()
 
     return (
         <Router>
