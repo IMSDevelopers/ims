@@ -6,7 +6,7 @@ import {
   } from "react-router-dom";
 import Login from "./Login";
 import Signup from "./Signup";
-import Home from "./Home";
+import UserHome from "./UserHome";
 import NotFound from "./NotFound";
 import Orders from "./Orders";
 import Cart from "./Cart";
@@ -17,7 +17,7 @@ function MyRouter(){
             <Switch>
                 <Route path ="/" exact component={Login}/>
                 <Route path ="/signup" exact component={Signup}/>
-                <Route path ="/home" exact component={Home}/>
+                <Route path ="/home" exact component={UserHome}/>
                 <Route path = "/orders" exact component ={Orders}/>
                 <Route path = "/cart" exact component ={Cart}/>
                 <Route path ="*" component={NotFound}/>

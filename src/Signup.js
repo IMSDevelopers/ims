@@ -2,20 +2,16 @@ import React from 'react';
 import bg from "./assets/CBU-image.jpg";
 import Navbar from './components/Navbar';
 import CBUlogo from './assets/cbulogo.png';
-import './Login.css'
+import './styles/Login.css'
 
 import {
     BrowserRouter as Router,
-    Link,
-    useHistory
 } from "react-router-dom";
 
 import './MyRouter';
 
 
 function Signup() {
-
-    let history = useHistory()
 
     return (
         <Router>
