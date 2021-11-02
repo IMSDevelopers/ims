@@ -75,7 +75,7 @@ class Login extends React.Component {
                                     <img src={CBUlogo} class="card-img-top small-img" alt="Login" />
                                 </a>
                                 <form className="card-body">
-                                    <div className="d-grid gap-4">
+                                    <div className="d-grid gap-3">
                                         <div className="input-group">
                                             <input
                                                 className="form-control"
@@ -93,7 +93,7 @@ class Login extends React.Component {
                                                 onChange={(val) => this.setInputValue('password', val.target.value)}
                                                 required />
                                         </div>
-
+                                        
                                         <button
                                             className="btn btn-warning btn-lg"
                                             type="submit"
@@ -111,7 +111,7 @@ class Login extends React.Component {
                                             className="btn btn-primary btn-lg"
                                             type="button"
                                             onClick={() => { this.props.history.push('/home') }}>
-                                            Goto Home
+                                            Go to Home
                                         </button>
                                     </div>
                                 </form>
