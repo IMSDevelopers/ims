@@ -1,7 +1,7 @@
 import React from "react";
 import bg from "./assets/CBU-image.jpg";
-import Navbar from './components/Navbar';
 import CBUlogo from './assets/cbulogo.png';
+import NavbarLogin from "./components/NavbarLogin";
 
 class Login extends React.Component {
 
@@ -61,7 +61,7 @@ class Login extends React.Component {
             }}>
 
                 <div className="vh-100">
-                    <Navbar />
+                    <NavbarLogin />
                     <div style={{ marginTop: "8vh" }} class="d-flex justify-content-center" >
                         <div class='col-md-3'>
                             

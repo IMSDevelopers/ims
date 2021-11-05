@@ -2,17 +2,17 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
 import { dummy } from './dummy.js';
-import axios from "axios";
+//import axios from "axios";
 
-const getItems = () => {
-    axios.get('http://127.0.0.1:5000/api/getItems')
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
+// const getItems = () => {
+//     axios.get('http://127.0.0.1:5000/api/getItems')
+//     .then(res => {
+//         console.log(res);
+//     })
+//     .catch(err => {
+//         console.log(err);
+//     })
+// }
 
 function Home() {
     return (
@@ -48,9 +48,9 @@ function Home() {
                     })}
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <button type="button" className="btn btn-primary" onClick={() => getItems()}>GET ITEMS</button>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ const Card = ({ description, quantity, url }) => {
             <div className="card-body">
                 <h4 className="card-title">{description}</h4>
                 <p className="card-text">Quantity: <strong>{quantity}</strong></p>
-                <button type="button" className="btn btn-primary">Add toCart</button>
+                <button type="button" className="btn btn-primary">Add to Cart</button>
             </div>
         </div>
     );

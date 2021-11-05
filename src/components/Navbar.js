@@ -10,6 +10,11 @@ class Navbar extends React.Component {
     const { history } = this.props;
     if(history) history.push('/');
   }
+
+  redirectToCart = () => {
+    const { history } = this.props;
+    if(history) history.push('/cart');
+  }
  
   render(){
     return (
@@ -17,12 +22,11 @@ class Navbar extends React.Component {
         <div className="container-fluid ">
           <a href="https://calbaptist.edu/college-of-engineering/" className="navbar-brand white-word">Inventory Management System</a>
          </div>
-        <div class= "">
           <form class="d-flex">
           <button 
             class="btn btn-warning me-3"
             type="submit"
-            onClick={() => { this.redirectToLogin() }}><AiOutlineShoppingCart />
+            onClick={() => { this.redirectToCart() }}><AiOutlineShoppingCart />
           </button>
           <button 
             class="btn btn-warning me-3"
@@ -30,11 +34,9 @@ class Navbar extends React.Component {
             onClick={() => { this.redirectToLogin() }}><FiLogOut />
           </button>
           </form>
-        </div>
     </nav>
     )
   }
 }
-
 
 export default withRouter(Navbar);

@@ -1,6 +1,6 @@
 import React from 'react';
 import bg from "./assets/CBU-image.jpg";
-import Navbar from './components/Navbar';
+import NavbarLogin from './components/NavbarLogin';
 import CBUlogo from './assets/cbulogo.png';
 import './styles/Login.css'
 
@@ -23,7 +23,7 @@ function Signup() {
             }}>
 
                 <div class="vh-100">
-                    <Navbar />
+                    <NavbarLogin />
                     <div style={{ marginTop: "15vh" }} class="d-flex justify-content-center" >
                         <div class='col-md-3'>
 

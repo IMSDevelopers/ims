@@ -28,15 +28,5 @@ export const dummy = [
             "description": "Whopper",
             "quantity": 3,
             "url": "https://en.meming.world/images/en/8/85/Kid_Mike_Wazowski.jpg"
-        },
-        {
-            "description": "Discord",
-            "quantity": 99,
-            "url": "https://en.meming.world/images/en/8/85/Kid_Mike_Wazowski.jpg"
-        },
-        {
-            "description": "Moe Jama",
-            "quantity": 3,
-            "url": "https://en.meming.world/images/en/8/85/Kid_Mike_Wazowski.jpg"
         }
     ]
