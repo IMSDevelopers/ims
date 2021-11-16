@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
 
@@ -21,8 +22,14 @@ class Navbar extends React.Component {
       <nav className="navbar navbar-expand-lg navbar-cbu ">
         <div className="container-fluid ">
           <a href="https://calbaptist.edu/college-of-engineering/" className="navbar-brand white-word">Inventory Management System</a>
-         </div>
-          <form class="d-flex">
+        </div>
+          <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search"/>
+          <button
+            type="button" 
+            class="btn btn-primary me-3"><AiOutlineSearch/>
+          </button>
+        </div>
           <button 
             class="btn btn-warning me-3"
             type="submit"
@@ -33,8 +40,7 @@ class Navbar extends React.Component {
             type="submit"
             onClick={() => { this.redirectToLogin() }}><FiLogOut />
           </button>
-          </form>
-    </nav>
+      </nav>
     )
   }
 }

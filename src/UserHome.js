@@ -23,19 +23,7 @@ function Home() {
                     <div className="col-md-8">
                         <h1>College of Engineering Inventory</h1>
                     </div>
-                    <div className="col-md-4" style={{ paddingTop: "10px" }}>
-                        <div className="input-group">
-                            <span className="input-group-text">Filters: </span>
-                            <select className="form-select">
-                                <option value="1">Show All</option>
-                                <option value="2"> Cables</option>
-                                <option value="3"> Hardware</option>
-                                <option value="4"> Miscellaneous</option>
-                            </select>
-                        </div>
-                    </div>
                 </div>
-
                 <div className="row">
                     {dummy.map(item => {
                         return (

@@ -79,7 +79,7 @@ class Login extends React.Component {
                                         <div className="input-group">
                                             <input
                                                 className="form-control"
-                                                placeholder="CBU Email"
+                                                placeholder="CBU Student ID"
                                                 value={this.state.username ? this.state.username : ''}
                                                 onChange={(val) => this.setInputValue('username', val.target.value)}
                                                 required />
