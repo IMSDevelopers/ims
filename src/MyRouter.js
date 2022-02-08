@@ -10,6 +10,7 @@ import UserHome from "./UserHome";
 import NotFound from "./NotFound";
 import Orders from "./Orders";
 import Cart from "./Cart";
+import AddItem from "./AddItem";
 
 function MyRouter(){
     return(
@@ -20,6 +21,7 @@ function MyRouter(){
                 <Route path ="/home" exact component={UserHome}/>
                 <Route path = "/orders" exact component ={Orders}/>
                 <Route path = "/cart" exact component ={Cart}/>
+                <Route path = "/additem" exact component ={AddItem}/>
                 <Route path ="*" component={NotFound}/>
             </Switch>
         </Router>
