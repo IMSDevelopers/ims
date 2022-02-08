@@ -4,8 +4,8 @@ import {
     Switch,
     Route
   } from "react-router-dom";
+import StartPage from "./StartPage";
 import Login from "./Login";
-import Signup from "./Signup";
 import UserHome from "./UserHome";
 import NotFound from "./NotFound";
 import Orders from "./Orders";
@@ -15,8 +15,8 @@ function MyRouter(){
     return(
         <Router>
             <Switch>
-                <Route path ="/" exact component={Login}/>
-                <Route path ="/signup" exact component={Signup}/>
+                <Route path ="/" exact component={StartPage}/>
+                <Route path ="/Login" exact component={Login}/>
                 <Route path ="/home" exact component={UserHome}/>
                 <Route path = "/orders" exact component ={Orders}/>
                 <Route path = "/cart" exact component ={Cart}/>

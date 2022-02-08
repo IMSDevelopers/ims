@@ -45,15 +45,12 @@ render(){
                                         <div class="input-group">
                                             <input
                                                 class="form-control"
-                                                pattern="[0-9]{6}"
                                                 placeholder="CBU Student ID"
-
                                                 required/>
                                         </div>
                                         <div class="input-group">
                                             <input
                                                 class="form-control"
-                                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
                                                 placeholder="Password"
                                                 type="password"
                                                 required/>
