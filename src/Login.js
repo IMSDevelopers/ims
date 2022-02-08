@@ -40,7 +40,7 @@ class Login extends React.Component {
             return;
         }
 
-        if (this.state.username === 'admin' && this.state.password === 'admin') {
+        if (this.state.username === 'admin' && this.state.password === 'password') {
             this.routingFunction();
         } else {
             alert('Invalid Credentials')
@@ -79,7 +79,7 @@ class Login extends React.Component {
                                         <div className="input-group">
                                             <input
                                                 className="form-control"
-                                                placeholder="CBU Student ID"
+                                                placeholder="Admin Login"
                                                 value={this.state.username ? this.state.username : ''}
                                                 onChange={(val) => this.setInputValue('username', val.target.value)}
                                                 required />
@@ -87,31 +87,17 @@ class Login extends React.Component {
                                         <div className="input-group">
                                             <input
                                                 className="form-control"
-                                                placeholder="Password"
+                                                placeholder="Admin Password"
                                                 type="password"
                                                 value={this.state.password ? this.state.password : ''}
                                                 onChange={(val) => this.setInputValue('password', val.target.value)}
                                                 required />
-                                        </div>
-                                        
+                                        </div>                               
                                         <button
                                             className="btn btn-warning btn-lg"
                                             type="submit"
                                             onClick={() => { this.doLogin() }}>
                                             Submit
-                                        </button>
-
-                                        <button
-                                            className="btn btn-primary btn-lg"
-                                            type="button"
-                                            onClick={() => { this.props.history.push('/signup') }}>
-                                            Sign Up
-                                        </button>
-                                        <button
-                                            className="btn btn-primary btn-lg"
-                                            type="button"
-                                            onClick={() => { this.props.history.push('/home') }}>
-                                            Go to Home
                                         </button>
                                     </div>
                                 </form>
