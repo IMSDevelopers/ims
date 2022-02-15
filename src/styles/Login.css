@@ -2,3 +2,16 @@
     width:250px;
     height: 250px;
 }
+
+.centerWidget {
+    width: 50%;
+    margin:0 auto;
+}
+
+#fileInput{
+    width: 25%;
+}
+
+#numberInput{
+    width: 10%;
+}

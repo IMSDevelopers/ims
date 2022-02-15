@@ -1,7 +1,5 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Card from "./components/Card";
-import { dummy } from './dummy.js';
 import { withRouter } from 'react-router-dom';
 
 class AddItem extends React.Component {
@@ -42,13 +40,13 @@ class AddItem extends React.Component {
                                 </div>
                             </div>
                             <div className="mb-4">
-                                <div className="input-group">
-                                    <input className="form-control" placeholder="0" type="number" required />
+                                <div className="centerWidget" id="numberInput">
+                                    Quantity: <input placeholder="1" type="number" min="1" max="9999" required />
                                 </div>
                             </div>
                             <div className="mb-4">
-                                <div className="input-group">
-                                    <input className="form-control" placeholder="Image" type="file" required />
+                                <div className="centerWidget" id="fileInput">
+                                    Image: <input placeholder="Image" type="file" required />
                                 </div>
                             </div>
                         </div>
