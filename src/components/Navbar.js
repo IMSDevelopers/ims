@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
@@ -16,12 +16,17 @@ class Navbar extends React.Component {
     const { history } = this.props;
     if(history) history.push('/cart');
   }
+
+  redirectToHome = () => {
+    const { history } = this.props;
+    if(history) history.push('/home');
+  }
  
   render(){
     return (
       <nav className="navbar navbar-expand-lg navbar-cbu ">
         <div className="container-fluid ">
-          <a href="https://calbaptist.edu/college-of-engineering/" className="navbar-brand white-word">Inventory Management System</a>
+          <button onClick={() => { this.redirectToHome() }} className="navbar-brand white-word" id="linkHome">Inventory Management System</button>
         </div>
           <div class="input-group">
               <input type="text" class="form-control" placeholder="Search"/>

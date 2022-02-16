@@ -38,7 +38,7 @@ class Cart extends React.Component {
                 className="btn btn-warning btn-lg"
                 type="button"
                 onClick={() => { this.redirectToOrders() }}>
-                Checkout
+                Place Order
             </button>
             </div>
         </div>
