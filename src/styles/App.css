@@ -11,3 +11,17 @@
 #linkHome {
     background:none; border:none;
 }
+
+#fileInput{
+    width: 25%;
+}
+
+#numberInput{
+    text-align: center;
+    width: 10%;
+}
+
+#numberSelection{
+    text-align: center;
+    width: 60%;
+}
