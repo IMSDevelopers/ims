@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
-import Card from "./components/Card";
+import CheckoutCard from "./components/CheckoutCard";
 import { dummy } from './dummy.js';
 import { withRouter } from 'react-router-dom';
 
@@ -25,7 +25,7 @@ class Cart extends React.Component {
                             return (
                                 <div className="col-md-2 align-self">
                                     <div className="mb-4">
-                                        <Card description={item.description} quantity={item.quantity} url={item.url} />
+                                        <CheckoutCard description={item.description} quantity={item.quantity} url={item.url} />
                                     </div>
                                 </div>
                             );
