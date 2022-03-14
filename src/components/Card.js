@@ -3,7 +3,32 @@ import '../styles/App.css'
 
 const Card = ({ description, quantity, url }) => {
 
-    const [number, setNumber] = useState(1);
+    const [number, setNumber] = useState(0);
+
+    const handleChange = (e) => {
+        //allows only numbers to be inputted
+        const re = /^[0-9\b]+$/;
+        if (!re.test(e.target.value) || e.target.value > quantity){  
+            setNumber(0);
+            e.target.value = number;
+        }else{
+            setNumber(parseInt(e.target.value));
+        }
+    }
+
+    const addToCart = (e) => {
+        alert("Button pressed. " + number );
+        console.log(number)
+    }
+
+    const substractionQuantity = (e) => {
+        if (number<=0){
+            e.target.value = "";
+        }else{
+            setNumber(number-1);
+            e.target.value = number;
+        }
+    }
 
     return (
         <div className="card">
@@ -15,12 +40,12 @@ const Card = ({ description, quantity, url }) => {
                 <p className="card-text">
                     Desired quantity: 
                     <div class="input-group mb-3">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon1" onClick={e => number <= 1 ? '' : setNumber(number-1)}>-</button>
-                        <input pattern="[0-9]+" class="form-control" id="numberSelection" value={number} defaultValue={1} min="1" max={quantity} required disabled/>
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2" onClick={e => number >= quantity ? '' : setNumber(number+1)}>+</button>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon1" onClick={substractionQuantity}>-</button>
+                        <input pattern="[0-9]+" class="form-control" id="numberSelection" value = {number} onChange={handleChange} defaultValue={number} min="0" max={quantity} />
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"  onClick={e => number >= quantity ? '' : setNumber(number+1)}>+</button>
                     </div>
                 </p>
-                <button type="button" className="btn btn-primary">Add to Cart</button>
+                <button type="button" onClick={addToCart} className="btn btn-primary">Add to Cart</button>
 
             </div>
             </center>

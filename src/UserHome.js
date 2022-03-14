@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
 import { dummy } from './dummy.js';
+import AdminCard from './components/AdminCard';
 //import axios from "axios";
 
 // const getItems = () => {
