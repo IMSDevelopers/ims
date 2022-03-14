@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
-import { dummy } from './dummy.js';
-//import axios from "axios";
-
-// const getItems = () => {
-//     axios.get('http://127.0.0.1:5000/api/getItems')
-//     .then(res => {
-//         console.log(res);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
+import axios from "axios";
 
 function Home() {
+
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:5000/api/getItems')
+        .then(res => {
+            setItems(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
+
     return (
         <div>
             <Navbar />
@@ -25,20 +27,16 @@ function Home() {
                     </div>
                 </div>
                 <div className="row">
-                    {dummy.map(item => {
+                    {items.map(item => {
                         return (
-                            <div className="col-md-2 align-self">
+                            <div className="col-md-2 align-self" key={item.id}>
                                 <div className="mb-4">
-                                    <Card description={item.description} quantity={item.quantity} url={item.url} />
+                                    <Card name={item.name} description={item.description} quantity={item.quantity} />
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-
-                {/* <div className="row">
-                    <button type="button" className="btn btn-primary" onClick={() => getItems()}>GET ITEMS</button>
-                </div> */}
             </div>
         </div>
     );
