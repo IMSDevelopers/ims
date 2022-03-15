@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/App.css'
 
-const Card = ({ description, quantity, url }) => {
+const Card = ({ name, description, quantity }) => {
 
     const [number, setNumber] = useState(0);
 
@@ -32,20 +32,22 @@ const Card = ({ description, quantity, url }) => {
 
     return (
         <div className="card">
-            <img src={url} class="card-img-top" alt="URL to img would go here" />
             <center>
                 <div className="card-body">
+                <h2>{name}</h2>
                 <h4 className="card-title">{description}</h4>
                 <p className="card-text">Quantity available: <strong>{quantity}</strong></p>
-                <p className="card-text">
+                <div className="card-text">
                     Desired quantity: 
                     <div class="input-group mb-3">
                         <button class="btn btn-outline-secondary" type="button" id="button-addon1" onClick={substractionQuantity}>-</button>
                         <input pattern="[0-9]+" class="form-control" id="numberSelection" value = {number} onChange={handleChange} defaultValue={number} min="0" max={quantity} />
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"  onClick={e => number >= quantity ? '' : setNumber(number+1)}>+</button>
                     </div>
-                </p>
-                <button type="button" onClick={addToCart} className="btn btn-primary">Add to Cart</button>
+                </div>
+                <button type="button" onClick={addToCart} className="btn btn-primary" disabled={number < 1}>
+                    Add to Cart
+                </button>
 
             </div>
             </center>

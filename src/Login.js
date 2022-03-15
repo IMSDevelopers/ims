@@ -61,17 +61,17 @@ class Login extends React.Component {
 
                 <div className="vh-100">
                     <NavbarLogin />
-                    <div style={{ marginTop: "8vh" }} class="d-flex justify-content-center" >
-                        <div class='col-md-3'>
+                    <div style={{ marginTop: "8vh" }} className="d-flex justify-content-center" >
+                        <div className='col-md-3'>
                             
-                            <div style={{ backgroundColor: '#bf8d3c', borderColor: 'black', border: '3px solid' }} class="card">
-                                <h4 style={{ color: 'white', }} class="d-flex justify-content-center">Login</h4>
+                            <div style={{ backgroundColor: '#bf8d3c', borderColor: 'black', border: '3px solid' }} className="card">
+                                <h4 style={{ color: 'white', }} className="d-flex justify-content-center">Login</h4>
                             </div>
 
                             <div className="card text-center">
                             
                                 <a href="https://calbaptist.edu/">
-                                    <img src={CBUlogo} class="card-img-top small-img" alt="Login" />
+                                    <img src={CBUlogo} className="card-img-top small-img" alt="Login" />
                                 </a>
                                 <form className="card-body">
                                     <div className="d-grid gap-3">

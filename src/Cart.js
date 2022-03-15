@@ -5,11 +5,8 @@ import { dummy } from './dummy.js';
 import { withRouter } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class Cart extends React.Component {
-
-    
 
     redirectToOrders = () => {
         const { history } = this.props;
@@ -28,7 +25,6 @@ class Cart extends React.Component {
         notify();
        
         if(history) history.push('/orders');
-        
     }
 
     render() {
@@ -78,7 +74,7 @@ class Cart extends React.Component {
                 pauseOnFocusLoss
                 draggable
                 pauseOnHover
-                />
+            />
             </div>
         </div>
     )

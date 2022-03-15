@@ -1,5 +1,5 @@
 import Navbar from "./components/Navbar";
-import React, { Children } from "react";
+import React from "react";
 import { dummyOrders } from './dummyOrders.js';
 import Order from './components/Order.js';
 

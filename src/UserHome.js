@@ -1,21 +1,22 @@
-import React, { useState }  from "react";
+import React, { useState, useEffect }  from "react";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
-import { dummy } from './dummy.js';
-import AdminCard from './components/AdminCard';
-//import axios from "axios";
+//import AdminCard from './components/AdminCard';
+import axios from 'axios';
 
-// const getItems = () => {
-//     axios.get('http://127.0.0.1:5000/api/getItems')
-//     .then(res => {
-//         console.log(res);
-//     })
-//     .catch(err => {
-//         console.log(err);
-//     })
-// }
+function Home() {
 
-function Home(){
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://127.0.0.1:5000/api/getItems')
+        .then(res => {
+            setItems(res.data)
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }, []);
 
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
@@ -23,8 +24,8 @@ function Home(){
         var lowerCase = e.target.value.toLowerCase();
         setInputText(lowerCase);
     };
-    //Enter the JSON file (in this case dummy.js) to filter its items
-    const filteredData = dummy.filter((el) => {
+    //Enter the JSON file to filter its items
+    const filteredData = items.filter((el) => {
         //if no input the return the original
         if (inputText === '') {
             return el;
@@ -51,19 +52,15 @@ function Home(){
                     
                 <div className="row">
                     {filteredData.map(item => {
-                        return (
-                            <div className="col-md-2 align-self">
+                        return(
+                            <div className="col-md-2 align-self" key={item.id}>
                                 <div className="mb-4">
-                                    <Card description={item.description} quantity={item.quantity} url={item.url} />
+                                    <Card name={item.name} description={item.description} quantity={item.quantity} />
                                 </div>
                             </div>
                         );
                     })}
                 </div>
-
-                {/* <div className="row">
-                    <button type="button" className="btn btn-primary" onClick={() => getItems()}>GET ITEMS</button>
-                </div> */}
             </div>
             </div>
         </div>
