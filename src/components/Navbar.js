@@ -21,6 +21,8 @@ class Navbar extends React.Component {
     const { history } = this.props;
     if(history) history.push('/home');
   }
+
+
  
   render(){
     return (
@@ -28,13 +30,13 @@ class Navbar extends React.Component {
         <div className="container-fluid ">
           <button onClick={() => { this.redirectToHome() }} className="navbar-brand white-word" id="linkHome">Inventory Management System</button>
         </div>
-          <div class="input-group">
+          {/* <div class="input-group">
               <input type="text" class="form-control" placeholder="Search"/>
           <button
             type="button" 
             class="btn btn-primary me-3"><AiOutlineSearch/>
           </button>
-        </div>
+        </div> */}
           <button 
             class="btn btn-warning me-3"
             type="submit"
