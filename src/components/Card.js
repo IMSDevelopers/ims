@@ -45,7 +45,9 @@ const Card = ({ name, description, quantity }) => {
                         <button class="btn btn-outline-secondary" type="button" id="button-addon2"  onClick={e => number >= quantity ? '' : setNumber(number+1)}>+</button>
                     </div>
                 </div>
-                <button type="button" onClick={addToCart} className="btn btn-primary">Add to Cart</button>
+                <button type="button" onClick={addToCart} className="btn btn-primary" disabled={number < 1}>
+                    Add to Cart
+                </button>
 
             </div>
             </center>
