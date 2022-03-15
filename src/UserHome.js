@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect }  from "react";
 import Navbar from "./components/Navbar";
 import Card from "./components/Card";
-import axios from "axios";
+//import AdminCard from './components/AdminCard';
+import axios from 'axios';
 
 function Home() {
 
@@ -17,6 +18,24 @@ function Home() {
         })
     }, []);
 
+    const [inputText, setInputText] = useState("");
+    let inputHandler = (e) => {
+        //convert input text to lower case
+        var lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
+    //Enter the JSON file to filter its items
+    const filteredData = items.filter((el) => {
+        //if no input the return the original
+        if (inputText === '') {
+            return el;
+        }
+        //return the item which contains the user input
+        else {
+            return el.description.toLowerCase().includes(inputText)
+        }
+    })
+
     return (
         <div>
             <Navbar />
@@ -25,10 +44,15 @@ function Home() {
                     <div className="col-md-8">
                         <h1>College of Engineering Inventory</h1>
                     </div>
-                </div>
+                    <div className="col-md-4">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" onChange={inputHandler} placeholder="Search Items"/>
+                        </div>
+                    </div>
+                    
                 <div className="row">
-                    {items.map(item => {
-                        return (
+                    {filteredData.map(item => {
+                        return(
                             <div className="col-md-2 align-self" key={item.id}>
                                 <div className="mb-4">
                                     <Card name={item.name} description={item.description} quantity={item.quantity} />
@@ -37,6 +61,7 @@ function Home() {
                         );
                     })}
                 </div>
+            </div>
             </div>
         </div>
     );

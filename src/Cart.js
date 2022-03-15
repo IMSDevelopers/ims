@@ -4,10 +4,26 @@ import CheckoutCard from "./components/CheckoutCard";
 import { dummy } from './dummy.js';
 import { withRouter } from 'react-router-dom';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 class Cart extends React.Component {
 
     redirectToOrders = () => {
         const { history } = this.props;
+
+        const notify = () => toast.success('Item created!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+            ;
+        
+        notify();
+       
         if(history) history.push('/orders');
     }
 
@@ -48,6 +64,17 @@ class Cart extends React.Component {
                 }}>
                 Place Order
             </button>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             </div>
         </div>
     )
