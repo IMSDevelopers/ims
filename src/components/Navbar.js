@@ -1,7 +1,6 @@
 import React from 'react';
-import { FiLogOut } from 'react-icons/fi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-//import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineUser } from 'react-icons/ai';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
 
@@ -21,8 +20,6 @@ class Navbar extends React.Component {
     const { history } = this.props;
     if(history) history.push('/home');
   }
-
-
  
   render(){
     return (
@@ -35,11 +32,7 @@ class Navbar extends React.Component {
             type="submit"
             onClick={() => { this.redirectToCart() }}><AiOutlineShoppingCart />
           </button>
-          <button 
-            className="btn btn-warning me-3"
-            type="submit"
-            onClick={() => { this.redirectToLogin() }}><FiLogOut />
-          </button>
+          <button className="btn btn-warning me-3"><AiOutlineUser /></button>
       </nav>
     )
   }

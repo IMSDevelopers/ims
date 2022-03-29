@@ -1,31 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { HiPencilAlt } from 'react-icons/hi';
+import { HiOutlineTrash } from 'react-icons/hi'
+import axios from 'axios';
 import '../styles/App.css'
 
-const AdminCard = ({ description, quantity, url }) => {
+const deleteItem = (id) => {
+    console.log(id)
+}
 
-    const [number, setNumber] = useState(1);
-
-    function confirmDelete() {
-        window.confirm('Are you sure you want to delete this item?')
-    }
+const AdminCard = ({ id, name, description, quantity }) => {
+    useEffect(() => {
+        console.log('render')
+    }, []);
 
     return (
         <div className="card">
-            <button type="button" onClick={confirmDelete} className="close" aria-label="Close" style={{backgroundColor:"#d9534f",color:"white"}} data-bs-toggle="tooltip" data-bs-placement="bottom" title="Delete" data-toggle="modal" data-target="#exampleModal">
-                <span aria-hidden="true">&times;</span>
-            </button>
-
-            <img src={url} className="card-img-top" alt="URL to img would go here" />
-            <center><div className="card-body">
+            <center>
+                <div className="card-body">
+                <h2>{name}</h2>
                 <h4 className="card-title">{description}</h4>
-                Current quantity:
-                <div className="input-group mb-3">
-                        <button className="btn btn-outline-secondary" type="button" id="button-addon1" onClick={e => number <= 1 ? '' : setNumber(number-1)}>-</button>
-                        <input pattern="[0-9]+" className="form-control" id="numberSelection" value={number} defaultValue={quantity} required disabled/>
-                        <button className="btn btn-outline-secondary" type="button" id="button-addon2" onClick={e => setNumber(number+1)}>+</button>
-                    </div>
-                <button type="button" className="btn btn-primary">Update</button>
-            </div></center>
+                <p className="card-text">Quantity available: <strong>{quantity}</strong></p>
+
+                {/* edit */}
+                <button type="button" className="btn btn-primary">
+                    <HiPencilAlt />
+                </button>
+
+                {/* delete */}
+                <button type="button" className="btn btn-danger" onClick={() => deleteItem(id)}>
+                    <HiOutlineTrash />
+                </button>
+
+            </div>
+            </center>
         </div>
     );
 }
