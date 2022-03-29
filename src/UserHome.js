@@ -18,7 +18,7 @@ function Home() {
             .catch(err => {
                 console.log(err);
             })
-    }, []);
+    }, [items]);
 
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
@@ -58,7 +58,7 @@ function Home() {
                                 return (
                                     <div className="col-md-2 align-self" key={item.id}>
                                         <div className="mb-4">
-                                            <Card name={item.name} description={item.description} quantity={item.quantity} />
+                                            <Card name={item.name} description={item.description} quantity={item.quantity} setItems={setItems} />
                                         </div>
                                     </div>
                                 );

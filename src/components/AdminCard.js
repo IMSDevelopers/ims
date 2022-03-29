@@ -1,18 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { HiPencilAlt } from 'react-icons/hi';
 import { HiOutlineTrash } from 'react-icons/hi'
 import axios from 'axios';
 import '../styles/App.css'
 
-const deleteItem = (id) => {
-    console.log(id)
-}
 
-const AdminCard = ({ id, name, description, quantity }) => {
-    useEffect(() => {
-        console.log('render')
-    }, []);
 
+const AdminCard = ({ id, name, description, quantity, setItems }) => {
+    const deleteItem = (id) => {
+        axios.get(`http://127.0.0.1:5000/api/deleteItem/${id}`)
+        .then(res => {
+            console.log('Success:', res);
+            axios.get('http://127.0.0.1:5000/api/getItems')
+                .then(res => {
+                    setItems(res.data)
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
     return (
         <div className="card">
             <center>
