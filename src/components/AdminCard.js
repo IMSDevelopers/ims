@@ -6,23 +6,17 @@ import '../styles/App.css'
 
 
 
-const AdminCard = ({ id, name, description, quantity, setItems }) => {
-    const deleteItem = (id) => {
-        axios.get(`http://127.0.0.1:5000/api/deleteItem/${id}`)
-        .then(res => {
-            console.log('Success:', res);
-            axios.get('http://127.0.0.1:5000/api/getItems')
-                .then(res => {
-                    setItems(res.data)
-                })
-                .catch(err => {
-                    console.log(err);
-                })
-        })
-        .catch(err => {
-            console.log(err);
-        })
+const AdminCard = ({ id, name, description, quantity, showModal, setSelectedItem }) => {
+
+    const selectItem = () => {
+        showModal(true);
+        const selectedItem = {
+            id: id,
+            name: name
+        }
+        setSelectedItem(() => selectedItem);
     }
+
     return (
         <div className="card">
             <center>
@@ -37,7 +31,7 @@ const AdminCard = ({ id, name, description, quantity, setItems }) => {
                 </button>
 
                 {/* delete */}
-                <button type="button" className="btn btn-danger" onClick={() => deleteItem(id)}>
+                <button type="button" className="btn btn-danger" onClick={() => selectItem()}>
                     <HiOutlineTrash />
                 </button>
 
