@@ -34,7 +34,7 @@ class Navbar extends React.Component {
           </button>
           <button className="btn btn-warning me-3"><AiOutlineUser /></button>
       </nav>
-    )
+    );
   }
 }
 

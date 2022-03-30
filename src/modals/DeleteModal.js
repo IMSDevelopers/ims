@@ -1,7 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 
-const DeleteModal = ({ showModal, selectedItem, setItems }) => {
+const DeleteModal = ({ 
+    showDeleteModal, 
+    selectedItem, 
+    setItems 
+}) => {
     let modalStyle = {
         display: 'block',
         backgroundColor: 'rgba(0,0,0,0.8)'
@@ -25,7 +29,7 @@ const DeleteModal = ({ showModal, selectedItem, setItems }) => {
             .catch(err => {
                 console.log(err);
         });
-        showModal(false);
+        showDeleteModal(false);
     }
 
     return (
@@ -34,10 +38,10 @@ const DeleteModal = ({ showModal, selectedItem, setItems }) => {
                 <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title">Delete '{selectedItem.name}'?</h5>
-                        <button type="button" className="btn-close" onClick={() => showModal(false)}></button>
+                        <button type="button" className="btn-close" onClick={() => showDeleteModal(false)}></button>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={() => showModal(false)}>Close</button>
+                        <button type="button" className="btn btn-secondary" onClick={() => showDeleteModal(false)}>Cancel</button>
                         <button type="button" className="btn btn-danger" onClick={() => deleteItem()}>Delete</button>
                     </div>
                 </div>

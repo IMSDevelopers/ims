@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
+import AdminNavbar from "./components/AdminNavbar";
 import Card from "./components/Card";
 import AdminCard from "./components/AdminCard";
-import DeleteModal from "./modals/DeleteModal";
 import axios from 'axios';
+
+import DeleteModal from "./modals/DeleteModal";
+import EditModal from "./modals/EditModal";
+import AddModal from "./modals/AddModal";
 
 let admin = true;
 
@@ -11,7 +15,11 @@ function Home() {
 
     const [items, setItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState({}); // state to handle the ITEM selected by user for MODAL
-    const [modal, showModal] = useState(false)
+
+    // 'show' states for modals
+    const [deleteModal, showDeleteModal] = useState(false);
+    const [editModal, showEditModal] = useState(false);
+    const [addModal, showAddModal] = useState(false);
 
     // initial load
     useEffect(() => {
@@ -48,8 +56,10 @@ function Home() {
 
     return (
         <div>
-            <Navbar />
+            
             {!admin ?
+            <React.Fragment>
+                <Navbar />
                 <div className="container">
                     <div className="row g-3" style={{ paddingTop: "20px" }}>
                         <div className="col-md-8">
@@ -76,7 +86,10 @@ function Home() {
                     </div>
 
                 </div>
+                </React.Fragment>
                 :
+                <React.Fragment>
+                <AdminNavbar />
                 <div className="container">
                     <div className="row g-3" style={{ paddingTop: "20px" }}>
                         <div className="col-md-8">
@@ -94,17 +107,21 @@ function Home() {
                                     <React.Fragment>
                                         <div className="col-md-2 align-self" key={item.id}>
                                             <div className="mb-4">
-                                                <AdminCard id={item.id} name={item.name} description={item.description}
-                                                    quantity={item.quantity} showModal={showModal} setSelectedItem={setSelectedItem} />
+                                                <AdminCard item={item} showDeleteModal={showDeleteModal} showEditModal={showEditModal}
+                                                    setSelectedItem={setSelectedItem} />
                                             </div>
                                         </div>
                                     </React.Fragment>
                                 );
                             })}
-                            {modal === true ? <DeleteModal showModal={showModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
+                            {deleteModal === true ? <DeleteModal showDeleteModal={showDeleteModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
+                            {editModal === true ? <EditModal showEditModal={showEditModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
+                            {addModal === true ? <AddModal showAddModal={showAddModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
                         </div>
                     </div>
-                </div>}
+                </div>
+                </React.Fragment>
+                }
         </div>
     );
 }
