@@ -4,7 +4,7 @@ import { HiOutlineTrash } from 'react-icons/hi'
 import '../styles/App.css'
 
 
-const AdminCard = ({ item, name, description, quantity, showDeleteModal, showEditModal, setSelectedItem }) => {
+const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) => {
 
     const selectItem = () => {
         const selectedItem = {

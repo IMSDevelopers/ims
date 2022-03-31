@@ -4,7 +4,7 @@ import {
     Switch,
     Route
   } from "react-router-dom";
-import UserHome from "./UserHome";
+import Home from "./Home";
 import NotFound from "./NotFound";
 import OrdersPage from "./OrdersPage";
 import Cart from "./Cart";
@@ -14,7 +14,7 @@ function MyRouter(){
     return(
         <Router>
             <Switch>
-                <Route path ="/" exact component={UserHome}/>
+                <Route path ="/" exact component={Home}/>
                 <Route path = "/orders" exact component ={OrdersPage}/>
                 <Route path = "/cart" exact component ={Cart}/>
                 <Route path = "/additem" exact component ={AddItem}/>

@@ -89,7 +89,7 @@ function Home() {
                 </React.Fragment>
                 :
                 <React.Fragment>
-                <AdminNavbar />
+                <AdminNavbar showAddModal={showAddModal}/>
                 <div className="container">
                     <div className="row g-3" style={{ paddingTop: "20px" }}>
                         <div className="col-md-8">
