@@ -39,6 +39,9 @@ const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) =>
                     <HiPencilAlt />
                 </button>
 
+                {/* this adds spacing between the two buttons */}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                 {/* delete */}
                 <button type="button" className="btn btn-danger" onClick={() => selectDelete()}>
                     <HiOutlineTrash />

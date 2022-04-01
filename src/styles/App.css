@@ -25,3 +25,10 @@
     text-align: center;
     width: 40%;
 }
+
+.card {
+    width: 13rem;
+    height: 15rem; 
+    max-height: 15rem; 
+    overflow: auto;
+}
