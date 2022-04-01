@@ -67,7 +67,7 @@ const EditModal = ({ showEditModal, selectedItem, setItems }) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={() => showEditModal(false)}>Cancel</button>
-                        <button type="submit" className="btn btn-primary">Add</button>
+                        <button type="submit" className="btn btn-primary">Update</button>
                     </div>
                     </form>
                 </div>
