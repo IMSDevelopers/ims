@@ -103,6 +103,10 @@ function Home() {
                         <div className="col-md-4">
                             <div className="input-group mb-3">
                                 <input type="text" className="form-control" onChange={inputHandler} placeholder="Search Items" />
+
+                                {/* this adds spacing between the two buttons */}
+
+                                <button className="btn btn-warning me-3 text-nowrap" onClick={() => showAddModal(true)}>Add Item</button>
                             </div>
                         </div>
 

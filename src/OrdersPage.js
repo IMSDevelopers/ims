@@ -2,11 +2,12 @@ import Navbar from "./components/Navbar";
 import React from "react";
 import { dummyOrders } from './dummyOrders.js';
 import Order from './components/Order.js';
+import AdminNavbar from "./components/AdminNavbar";
 
 function OrdersPage() {
     return(
         <div>
-            <Navbar/>
+            <AdminNavbar/>
             <div className="container">
                 <div className="row g-3" style={{ paddingTop: "20px" }}>
                     <div className="col-md-8">
