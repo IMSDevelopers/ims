@@ -25,7 +25,8 @@ function Home() {
     useEffect(() => {
         axios.get('http://127.0.0.1:5000/api/getItems')
             .then(res => {
-                setItems(res.data)
+                //console.log(res.data);
+                setItems(res.data);
             })
             .catch(err => {
                 console.log(err);
@@ -76,7 +77,11 @@ function Home() {
                                 return(
                                     <div className="col-md-2 align-self" key={item.id}>
                                         <div className="mb-4">
-                                            <Card name={item.name} description={item.description} quantity={item.quantity} 
+                                            <Card 
+                                            name={item.name} 
+                                            description={item.description} 
+                                            quantity={item.quantity} 
+                                            urlImage={item.url_image}
                                             setItems={setItems} />
                                         </div>
                                     </div>
@@ -103,6 +108,7 @@ function Home() {
 
                         <div className="row">
                             {filteredData.map(item => {
+                                
                                 return (
                                     <React.Fragment>
                                         <div className="col-md-2 align-self" key={item.id}>

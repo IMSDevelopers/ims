@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import '../styles/App.css'
+import '../styles/App.css';
+import CBUSquareLogo from '../assets/cbuSquare.png';
 
-const Card = ({ name, description, quantity }) => {
+const Card = ({ name, description, quantity, urlImage }) => {
 
     const [number, setNumber] = useState(0);
+    
 
     const handleChange = (e) => {
         //allows only numbers to be inputted
@@ -11,6 +13,7 @@ const Card = ({ name, description, quantity }) => {
         if (!re.test(e.target.value) || e.target.value > quantity){  
             setNumber(0);
             e.target.value = number;
+            
         }else{
             setNumber(parseInt(e.target.value));
         }
@@ -34,6 +37,11 @@ const Card = ({ name, description, quantity }) => {
         <div className="card">
             <center>
                 <div className="card-body">
+                { urlImage === '' ? 
+                    <img src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
+                    :
+                    <img src={ urlImage } alt="Item figure" width={"50%"} height={"50%"}/>
+                    }
                 <h2>{name}</h2>
                 <h4 className="card-title">{description}</h4>
                 <p className="card-text">Quantity available: <strong>{quantity}</strong></p>

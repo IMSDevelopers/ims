@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../styles/App.css'
+import '../styles/App.css';
+import CBUSquareLogo from '../assets/cbuSquare.png';
 
 const CheckoutCard = ({ description, quantity, url }) => {
 
@@ -15,7 +16,11 @@ const CheckoutCard = ({ description, quantity, url }) => {
                 <span aria-hidden="true">&times;</span>
             </button>
 
-            <img src={url} className="card-img-top" alt="URL to img would go here" />
+            { url === '' ? 
+                    <img src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
+                    :
+                    <img src={ url } alt="Item figure" width={"50%"} height={"50%"}/>
+                    }
             <center>
                 <div className="card-body">
                 <h4 className="card-title">{description}</h4>
