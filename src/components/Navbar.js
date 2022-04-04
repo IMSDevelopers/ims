@@ -18,7 +18,7 @@ class Navbar extends React.Component {
 
   redirectToHome = () => {
     const { history } = this.props;
-    if(history) history.push('/home');
+    if(history) history.push('/');
   }
  
   render(){

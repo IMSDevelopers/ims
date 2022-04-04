@@ -1,16 +1,25 @@
 import React from 'react';
 import '../styles/App.css'
+import { withRouter } from 'react-router-dom';
 
-const AdminNavbar = ({ showAddModal }) => {
+const AdminNavbar = ({ showAddModal, history }) => {
+
+    const redirectToOrders = () => {
+        if(history) history.push('/orders');
+    }
+
+    const redirectToHome = () => {
+        if(history) history.push('/');
+    }
+
     return (
         <nav className="navbar navbar-expand-lg navbar-cbu">
             <div className="container-fluid ">
-                <button className="navbar-brand white-word" id="linkHome">Inventory Management System</button>
+                <button className="navbar-brand white-word" id="linkHome" onClick={() => redirectToHome(true)}>Inventory Management System</button>
             </div>
-            <button className="btn btn-warning me-3 text-nowrap" onClick={() => showAddModal(true)}>Add Item</button>
-            <button className="btn btn-warning me-3 text-nowrap">Orders</button>
+            <button className="btn btn-warning me-3 text-nowrap" onClick={() =>  redirectToOrders()}>Orders</button>
         </nav>
     );
 };
 
-export default AdminNavbar;
+export default withRouter(AdminNavbar);
