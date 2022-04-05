@@ -3,6 +3,7 @@ import { HiPencilAlt } from 'react-icons/hi';
 import { HiOutlineTrash } from 'react-icons/hi';
 import '../styles/App.css';
 import CBUSquareLogo from '../assets/cbuSquare.png';
+import '../styles/App.css';
 
 
 const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) => {
@@ -31,31 +32,35 @@ const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) =>
     return (
         <div className="card">
             <center>
-                <div className="card-body">
-                { item.url_image === '' ? 
-                    <img src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
-                    :
-                    <img src={ item.url_image } alt="Item figure" width={"50%"} height={"50%"}/>
-                    }
                 
-                <h4>{item.name}</h4>
-                <h4 className="card-title">{item.description}</h4>
+                { item.url_image === '' ? 
+                    <img className="img-fluid rounded-start img" src={ CBUSquareLogo } alt="Item figure" />  
+                    :
+                    <img className="img-fluid rounded-start img" src={ item.url_image } alt="Item figure" />
+                    }
+                <div className="card-body">
+                <h4 className="card-text">{item.name}</h4>
+                <p className="card-text">{item.description}</p>
                 <p className="card-text">Quantity available: <strong>{item.quantity}</strong></p>
+                </div>
 
-                {/* edit */}
-                <button type="button" className="btn btn-primary" onClick={() => selectEdit()}>
-                    <HiPencilAlt />
-                </button>
+                <div className="bottom-card">
+                    {/* edit */}
+                    <button type="button" className="btn btn-primary" onClick={() => selectEdit()}>
+                        <HiPencilAlt />
+                    </button>
 
-                {/* this adds spacing between the two buttons */}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    {/* this adds spacing between the two buttons */}
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                {/* delete */}
-                <button type="button" className="btn btn-danger" onClick={() => selectDelete()}>
-                    <HiOutlineTrash />
-                </button>
+                    {/* delete */}
+                    <button type="button" className="btn btn-danger" onClick={() => selectDelete()}>
+                        <HiOutlineTrash />
+                    </button>
+                </div>
+                
 
-            </div>
+            
             </center>
         </div>
     );
