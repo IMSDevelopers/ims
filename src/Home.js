@@ -4,6 +4,7 @@ import AdminNavbar from "./components/AdminNavbar";
 import Card from "./components/Card";
 import AdminCard from "./components/AdminCard";
 import axios from 'axios';
+import './styles/App.css';
 
 import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
@@ -97,17 +98,14 @@ function Home() {
                 <AdminNavbar showAddModal={showAddModal}/>
                 <div className="container">
                     <div className="row g-3" style={{ paddingTop: "20px" }}>
-                        <div className="col-md-8">
+                        <div className="col-md-7">
                             <h1>College of Engineering Inventory</h1>
                         </div>
-                        <div className="col-md-4">
-                            <div className="input-group mb-3">
-                                <input type="text" className="form-control" onChange={inputHandler} placeholder="Search Items" />
-
-                                {/* this adds spacing between the two buttons */}
-
-                                <button className="btn btn-warning me-3 text-nowrap" onClick={() => showAddModal(true)}>Add Item</button>
-                            </div>
+                        <div className="col-md-3">
+                            <input type="text" className="form-control" onChange={inputHandler} placeholder="Search Items" />
+                        </div>
+                        <div className="col-md-2 space-button">
+                                <button className="btn btn-warning text-nowrap " onClick={() => showAddModal(true)}>Add Item</button>
                         </div>
 
                         <div className="row">

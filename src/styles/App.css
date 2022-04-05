@@ -38,6 +38,11 @@
     max-height:100px;
 }
 
+.space-button{
+    text-align: right;
+    
+}
+
 .custom-file-upload {
     border: 1px solid #ccc;
     display: inline-block;

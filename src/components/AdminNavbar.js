@@ -16,7 +16,7 @@ const AdminNavbar = ({ history }) => {
         pageState = "home";
     }
 
-    if (pageState == "orders") {
+    if (pageState === "orders") {
         return (
             <nav className="navbar navbar-expand-lg navbar-cbu">
                 <div className="container-fluid ">
