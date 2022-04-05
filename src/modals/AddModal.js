@@ -15,30 +15,40 @@ const AddModal = ({
     const [quantity, setQuantity] = useState(0);
     const [description, setDescription] = useState("");
     const [selectFile, setSelectFile] = useState();
+    const [fileName, setFileName] = useState("");
+    const [urlFile, setUrlFile] = useState("");
+    const [showAlert, setShowAlert] = useState(false);
 
     let pictureUrl="";
 
     const handleChangeFile = (e) => {
         setSelectFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
+        setUrlFile(URL.createObjectURL(e.target.files[0]));
     }
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const data = new FormData;
-        data.append("file", selectFile);
-        //Upload picture and get the Object URL
-        axios.post("http://127.0.0.1:5000/api/upload", data, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-              },
-        })
-        .then(res => {
-            //console.log("File response: ", res);
-            pictureUrl = res.data;
+        const data = new FormData();
+        if( selectFile != null){
+            data.append("file", selectFile);
+            //Upload picture and get the Object URL
+            axios.post("http://127.0.0.1:5000/api/upload", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then(res => {
+                pictureUrl = res.data;
+                submitItem(pictureUrl)
+            })
+        } else {
             submitItem(pictureUrl)
-        })
-        showAddModal(false);
+        }
+         
+        setTimeout(()=> {
+            showAddModal(false);
+         }, 1500);        
     }
 
 
@@ -51,13 +61,14 @@ const AddModal = ({
             url_image: url
         })
         .then(res => {
-            //console.log('Picture url is: ', url);
-            console.log('ITEM POSTED', res);
+            console.log('ITEM POSTED', res); 
+            setShowAlert(true);           
         })
         .then(res => {
             axios.get('http://127.0.0.1:5000/api/getItems')
             .then(res => {
                 setItems(res.data);
+                
             })
             .catch(err => {
                 console.log(err);
@@ -66,12 +77,16 @@ const AddModal = ({
         .catch(err => {
             console.log('ERROR:', err);
         })
-    }
 
-    
+    }
 
     return (
         <div className="modal show fade" style={modalStyle}>
+            {showAlert && (
+                <div className="alert alert-success" style={{marginTop:"10px"}} role="alert">
+                    Item Created.
+                </div>)}
+            
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -80,7 +95,6 @@ const AddModal = ({
                     </div>
                     <form onSubmit={handleSubmit}>
                     <div className="modal-body">
-                    
                             <div className="form-group">
                                 <label>Name:</label>
                                 <input type="text" className="form-control" value={name} onChange={e => setName(e.target.value)} />
@@ -93,6 +107,13 @@ const AddModal = ({
                                 <input id="picUpload" type="file" accept="image/*|
                                     image/heic|image/heif" name="file" onChange={handleChangeFile}
                                     style={{position: "absolute", left: '-99999rem'}}/>
+                                <label>{fileName}</label>
+                                { selectFile == null ?
+                                <img src='' alt=''/>
+                                :
+                                <img src={urlFile} className="img" alt='Selected File'/>
+                                }
+                                
                             </div>
                     </div>
                     <div className="modal-footer">
