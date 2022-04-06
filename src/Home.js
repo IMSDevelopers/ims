@@ -9,10 +9,15 @@ import './styles/App.css';
 import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
 import AddModal from "./modals/AddModal";
+import { useGlobalState } from "./state/globalState";
 
-let admin = true;
+// let admin = true;
 
 function Home() {
+
+    // We use this hook to keep track of the state of our home page
+    const stateRef = useGlobalState("userState")[0];
+    // console.log(useGlobalState("userState")[0]);
 
     const [items, setItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState({}); // state to handle the ITEM selected by user for MODAL
@@ -59,7 +64,7 @@ function Home() {
     return (
         <div>
             
-            {!admin ?
+            {!stateRef ?
             <React.Fragment>
                 <Navbar />
                 <div className="container">
