@@ -97,27 +97,29 @@ function Home() {
                 <React.Fragment>
                 <AdminNavbar showAddModal={showAddModal}/>
                 <div className="container">
-                    <div className="row g-3" style={{ paddingTop: "20px" }}>
-                        <div className="col-md-7">
+                    <div className="row g-3 p-3" >
+                        
+                        <div className="col-md-7 pt-2">
                             <h1>College of Engineering Inventory</h1>
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-3 pt-3">
                             <input type="text" className="form-control" onChange={inputHandler} placeholder="Search Items" />
                         </div>
-                        <div className="col-md-2 space-button">
+                        <div className="col-md-2 space-button py-3">
                                 <button className="btn btn-warning text-nowrap " onClick={() => showAddModal(true)}>Add Item</button>
                         </div>
+                        
 
                         <div className="row">
                             {filteredData.map(item => {
                                 
                                 return (
                                     <React.Fragment>
-                                        <div className="col-md-2 align-self" key={item.id}>
-                                            <div className="mb-4">
-                                                <AdminCard item={item} showDeleteModal={showDeleteModal} showEditModal={showEditModal}
+                                        <div className="col-lg-3 col-md-6 col-sm-12 align-self" key={item.id}>
+                                            
+                                            <AdminCard item={item} showDeleteModal={showDeleteModal} showEditModal={showEditModal}
                                                     setSelectedItem={setSelectedItem} />
-                                            </div>
+                                        
                                         </div>
                                     </React.Fragment>
                                 );
@@ -126,7 +128,7 @@ function Home() {
                             {editModal === true ? <EditModal showEditModal={showEditModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
                             {addModal === true ? <AddModal showAddModal={showAddModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
                         </div>
-                    </div>
+                        </div>
                 </div>
                 </React.Fragment>
                 }
