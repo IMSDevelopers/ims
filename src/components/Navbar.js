@@ -3,6 +3,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineUser } from 'react-icons/ai';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
+import { setGlobalState } from "../state/globalState";
 
 class Navbar extends React.Component {
 
@@ -20,6 +21,13 @@ class Navbar extends React.Component {
     const { history } = this.props;
     if(history) history.push('/');
   }
+
+  redirectToAdminHome = () => {
+    setGlobalState("userState", true);
+    console.log("THIS IS A STRONG MESSAGE!");
+    const { history } = this.props;
+    if(history) history.push('/');
+  }
  
   render(){
     return (
@@ -32,7 +40,12 @@ class Navbar extends React.Component {
             type="submit"
             onClick={() => { this.redirectToCart() }}><AiOutlineShoppingCart />
           </button>
-          <button className="btn btn-warning me-3"><AiOutlineUser /></button>
+          <button 
+            className="btn btn-warning me-3"
+            onClick={() => { 
+            this.redirectToAdminHome()}}>
+              <AiOutlineUser />
+          </button>
       </nav>
     );
   }
