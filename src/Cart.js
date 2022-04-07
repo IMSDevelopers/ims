@@ -1,84 +1,72 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import CheckoutCard from "./components/CheckoutCard";
-import { dummy } from './dummy.js';
-import { withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useGlobalState } from './state/globalState';
+import Navbar from './components/Navbar';
+import axios from 'axios';
 
-import { ToastContainer, toast } from 'react-toastify';
+const Cart = ({ }) => {
 
-class Cart extends React.Component {
+    const [id, setStudentID] = useState("");
+    const cart = useGlobalState("cart")[0];
 
-    redirectToOrders = () => {
-        const { history } = this.props;
-
-        const notify = () => toast.success('Item created!', {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            });
-            ;
-        
-        notify();
-       
-        if(history) history.push('/orders');
+    const generateOrderID = () => {
+        return Math.floor(Math.random() * 10000000)
     }
 
-    render() {
-    return(
-        <div>
-            <Navbar/>
-            <div className="container">
-                <div className="row g-3" style={{ paddingTop: "20px" }}>
-                    <div className="col-md-8">
-                        <h1>Your Cart</h1>
-                    </div>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        let random_gen_id = generateOrderID()
+        cart.forEach(item => {
+            axios.post("http://127.0.0.1:5000/api/postOrder", {
+                order_id: random_gen_id,
+                item_id: item.item_id,
+                num_ordered: item.num_ordered,
+                student_id: id,
+                order_status: "pending"
+            })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        })
+    }
+
+    return (
+        <React.Fragment>
+            <Navbar />
+            <div className="container py-5">
+                <h3>Your Cart</h3>
+                <form onSubmit={handleSubmit}>
                     <div className="row">
-                        {dummy.map(item => {
-                            return (
-                                <div className="col-md-2 align-self">
-                                    <div className="mb-4">
-                                        <CheckoutCard description={item.description} quantity={item.quantity} url={item.url} />
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        <div className="col-2"></div>
+                        <div className="col">
+
+                            <ul className="list-group">
+                                {(cart.length > 0) ?
+                                    cart.map((item, id) => {
+                                        return (
+                                            <React.Fragment>
+                                                <li className="list-group-item" key={id}>
+                                                    <strong>{item.item_name}</strong>
+                                                    <br />
+                                                    Num ordered: {item.num_ordered}
+                                                </li>
+                                            </React.Fragment>
+                                        )
+                                    })
+                                    : <div><strong>Your Cart is Empty</strong></div>}
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                    <label htmlFor="studentID">Your Student ID:</label>
+                    <input type="text" className="form-control" placeholder="######"
+                        onChange={e => setStudentID(e.target.value)} />
+                    <button type="submit" className="btn btn-warning">Place Order</button>
+                </form>
             </div>
-            <div className= "text-center">
-            <button
-                className="btn btn-warning btn-lg"
-                type="button"
-                onClick={() => { 
-                    var studentID = prompt('Please Enter your student ID: ');
-                    let sID = new RegExp("^[0-9]{6}");
-                    if (!studentID || studentID.length <= 0 || studentID.length > 6 || !(studentID.match(sID))) {
-                        alert("Invalid student ID.");
-                    } else {
-                        this.redirectToOrders();
-                    }
-                }}>
-                Place Order
-            </button>
-            <ToastContainer
-                position="top-center"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-            </div>
-        </div>
+        </React.Fragment>
     )
-    }
 }
 
-export default withRouter(Cart);
+export default Cart;

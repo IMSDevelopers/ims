@@ -9,7 +9,8 @@ import './styles/App.css';
 import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
 import AddModal from "./modals/AddModal";
-import { useGlobalState } from "./state/globalState";
+
+import { useGlobalState, setGlobalState } from "./state/globalState";
 
 function Home() {
 
@@ -23,6 +24,8 @@ function Home() {
     const [deleteModal, showDeleteModal] = useState(false);
     const [editModal, showEditModal] = useState(false);
     const [addModal, showAddModal] = useState(false);
+
+    const cc = useGlobalState("cart")[0];
 
     // initial load
     useEffect(() => {
@@ -60,10 +63,10 @@ function Home() {
 
     return (
         <div>
-            
             {!isAdmin ?
             <React.Fragment>
                 <Navbar />
+
                 <div className="container">
                     <div className="row g-3" style={{ paddingTop: "20px" }}>
                         <div className="col-md-8">
@@ -81,11 +84,9 @@ function Home() {
                                     <div className="col-md-2 align-self" key={item.id}>
                                         <div className="mb-4">
                                             <Card 
-                                            name={item.name} 
-                                            description={item.description} 
-                                            quantity={item.quantity} 
-                                            urlImage={item.url_image}
-                                            setItems={setItems} />
+                                            item={item}
+                                            setItems={setItems}
+                                            cart={cc} />
                                         </div>
                                     </div>
                                 );
