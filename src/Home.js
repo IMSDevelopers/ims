@@ -65,12 +65,12 @@ function Home() {
             <React.Fragment>
                 <Navbar />
                 <div className="container">
-                    <div className="row g-3" style={{ paddingTop: "20px" }}>
-                        <div className="col-md-8">
+                    <div className="row g-3 p-3">
+                        <div className="col-md-7 pt-2">
                             <h1>College of Engineering Inventory</h1>
                         </div>
                         <div className="col-md-4">
-                            <div className="input-group mb-3">
+                            <div className="input-group mb-3 pt-3">
                                 <input type="text" className="form-control" onChange={inputHandler} placeholder="Search Items" />
                             </div>
                         </div>
@@ -78,15 +78,15 @@ function Home() {
                         <div className="row">
                             {filteredData.map(item => {
                                 return(
-                                    <div className="col-md-2 align-self" key={item.id}>
-                                        <div className="mb-4">
-                                            <Card 
+                                    <div className="col-lg-3 col-md-6 col-sm-12 align-self" key={item.id}>
+                                         
+                                        <Card 
                                             name={item.name} 
                                             description={item.description} 
                                             quantity={item.quantity} 
                                             urlImage={item.url_image}
                                             setItems={setItems} />
-                                        </div>
+                                        
                                     </div>
                                 );
                             })}

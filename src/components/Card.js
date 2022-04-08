@@ -34,16 +34,17 @@ const Card = ({ name, description, quantity, urlImage }) => {
     }
 
     return (
-        <div className="card">
+        <div className="card mb-4">
             <center>
-                <div className="card-body">
                 { urlImage === '' ? 
-                    <img src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
+                    <img className="img-fluid rounded-start img" src={ CBUSquareLogo } alt="Item figure"/>  
                     :
-                    <img src={ urlImage } alt="Item figure" width={"50%"} height={"50%"}/>
+                    <img className="img-fluid rounded-start img" src={ urlImage } alt="Item figure"/>
                     }
-                <h2>{name}</h2>
-                <h4 className="card-title">{description}</h4>
+                <div className="card-body">
+                
+                <h4 className="card-text">{name}</h4>
+                <p className="card-text">{description}</p>
                 <p className="card-text">Quantity available: <strong>{quantity}</strong></p>
                 <div className="card-text">
                     Desired quantity: 
