@@ -10,7 +10,7 @@ import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
 import AddModal from "./modals/AddModal";
 
-import { useGlobalState, setGlobalState } from "./state/globalState";
+import { useGlobalState } from "./state/globalState";
 
 function Home() {
 

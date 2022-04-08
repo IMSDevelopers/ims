@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useGlobalState } from './state/globalState';
 import Navbar from './components/Navbar';
 import axios from 'axios';
 
-const Cart = ({ }) => {
+const Cart = () => {
 
     const [id, setStudentID] = useState("");
     const cart = useGlobalState("cart")[0];

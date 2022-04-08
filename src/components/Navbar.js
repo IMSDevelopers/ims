@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineUser } from 'react-icons/ai';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
-import { useGlobalState, setGlobalState } from "../state/globalState";
-import CartModal from '../modals/CartModal';
+import { setGlobalState } from "../state/globalState";
 
 const Navbar = ({ history }) => {
 
@@ -16,9 +15,6 @@ const Navbar = ({ history }) => {
     setGlobalState("userState", true);
     if (history) history.push('/');
   }
-
-  const cc = useGlobalState("cart")[0];
-  const [cartModal, showCartModal] = useState();
 
   return (
     <React.Fragment>
