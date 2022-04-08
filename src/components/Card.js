@@ -38,7 +38,7 @@ const Card = ({ item, cart }) => {
     }
 
     return (
-        <div className="card">
+        <div className="card mb-4">
             <center>
                 <div className="card-body">
                 { item.url_image === '' ? 
@@ -49,6 +49,7 @@ const Card = ({ item, cart }) => {
                 <h2>{item.name}</h2>
                 <h4 className="card-title">{item.description}</h4>
                 <p className="card-text">Quantity available: <strong>{item.quantity}</strong></p>
+                 
                 <div className="card-text">
                     Desired quantity: 
                     <div className="input-group mb-3">
