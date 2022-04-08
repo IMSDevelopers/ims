@@ -76,7 +76,7 @@ function OrdersPage() {
                                         <Accordion.Header>
                                             <strong>Order #:&nbsp;</strong>
                                             {order.order_id}
-                                            <span className="badge bg-secondary">Placed by: {order.student_id}</span>
+                                            <span className="badge bg-secondary">Placed by: {order.student_id} at {order.time_placed}</span>
                                         </Accordion.Header>
                                         <Accordion.Body>
                                             <ul className="list-group">

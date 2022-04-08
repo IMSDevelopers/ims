@@ -5,23 +5,31 @@ import axios from 'axios';
 
 const Cart = () => {
 
-    const [id, setStudentID] = useState("");
+    const [id, setStudentID] = useState(0);
     const cart = useGlobalState("cart")[0];
 
     const generateOrderID = () => {
         return Math.floor(Math.random() * 10000000)
     }
 
+    /*
+        @TODO: Make this look less ugly!
+    */
+    const getTime = () => {
+        return new Date().toISOString().slice(0, 10).replace('T', ' ');
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        let random_gen_id = generateOrderID()
+        let random_gen_id = generateOrderID();
+        let time_placed = getTime();
         cart.forEach(item => {
             axios.post("http://127.0.0.1:5000/api/postOrder", {
                 order_id: random_gen_id,
                 item_id: item.item_id,
                 num_ordered: item.num_ordered,
                 student_id: id,
-                order_status: "pending"
+                time_placed: time_placed
             })
                 .then(res => {
                     console.log(res);
@@ -60,7 +68,7 @@ const Cart = () => {
                         </div>
                     </div>
                     <label htmlFor="studentID">Your Student ID:</label>
-                    <input type="text" className="form-control" placeholder="######"
+                    <input type="number" className="form-control" placeholder="######"
                         onChange={e => setStudentID(e.target.value)} />
                     <button type="submit" className="btn btn-warning">Place Order</button>
                 </form>
