@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 const DeleteModal = ({ 
     showDeleteModal, 
     selectedItem, 
-    setItems 
+    setItems,
+    setDeleteToastify 
 }) => {
     let modalStyle = {
         display: 'block',
         backgroundColor: 'rgba(0,0,0,0.8)'
     }
-
-    const [showAlert, setShowAlert] = useState(false);
-
     const deleteItem = () => {
         axios.get(`http://127.0.0.1:5000/api/deleteItem/${selectedItem.id}`)
             .then(res => {
@@ -31,21 +29,12 @@ const DeleteModal = ({
             .catch(err => {
                 console.log(err);
         });
-
-        setShowAlert(true);
-         
-        setTimeout(()=> {
-            showDeleteModal(false);
-         }, 1500); 
-        
+        showDeleteModal(false);
+        setDeleteToastify(true);
     }
 
     return (
         <div className="modal show fade" style={modalStyle}>
-            {showAlert && (
-                <div className="alert alert-danger" style={{marginTop:"10px"}} role="alert">
-                    Item Deleted.
-                </div>)}
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">

@@ -10,6 +10,10 @@ import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
 import AddModal from "./modals/AddModal";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {notify, deleteNotify, editNotify, addNotify } from './components/Toastify';
+
 import { useGlobalState } from "./state/globalState";
 
 function Home() {
@@ -24,6 +28,11 @@ function Home() {
     const [deleteModal, showDeleteModal] = useState(false);
     const [editModal, showEditModal] = useState(false);
     const [addModal, showAddModal] = useState(false);
+
+    const [showToastifyCart, setShowToastifyCart] = useState(false);
+    const [deleteToastify, setDeleteToastify] = useState(false);
+    const [editToastify, setEditToastify] = useState(false);
+    const [addToastify, setAddToastify] = useState(false);
 
     const cc = useGlobalState("cart")[0];
 
@@ -43,6 +52,27 @@ function Home() {
     useEffect(() => {
     }, [items])
 
+    //Show toastify when adding to cart
+    if (showToastifyCart) {
+        notify();
+        setShowToastifyCart(false);
+    }
+    //show toastify when deleting an item as admin
+    if (deleteToastify) {
+        deleteNotify();
+        setDeleteToastify(false);
+    }
+
+    if (editToastify) {
+        editNotify();
+        setEditToastify(false);
+    }
+
+    if (addToastify) {
+        addNotify();
+        setAddToastify(false);
+    }
+    
     const [inputText, setInputText] = useState("");
     let inputHandler = (e) => {
         //convert input text to lower case
@@ -64,9 +94,12 @@ function Home() {
     return (
         <div>
             {!isAdmin ?
+            
+            
             <React.Fragment>
                 <Navbar />
-
+                <ToastContainer/>
+                
                 <div className="container">
                     <div className="row g-3 p-3">
                         <div className="col-md-7 pt-2">
@@ -84,9 +117,9 @@ function Home() {
                                     <div className="col-lg-3 col-md-6 col-sm-12 align-self" key={item.id}>
                                         <div className="mb-4">
                                             <Card 
-                                            item={item}
-                                            setItems={setItems}
-                                            cart={cc} />
+                                                item={item}
+                                                cart={cc} 
+                                                setShowToastify = {setShowToastifyCart}/>
                                         </div>
                                     </div>
                                 );
@@ -98,7 +131,9 @@ function Home() {
                 </React.Fragment>
                 :
                 <React.Fragment>
+                    
                 <AdminNavbar showAddModal={showAddModal}/>
+                <ToastContainer/>
                 <div className="container">
                     <div className="row g-3 p-3" >
                         
@@ -127,9 +162,9 @@ function Home() {
                                     </React.Fragment>
                                 );
                             })}
-                            {deleteModal === true ? <DeleteModal showDeleteModal={showDeleteModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
-                            {editModal === true ? <EditModal showEditModal={showEditModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
-                            {addModal === true ? <AddModal showAddModal={showAddModal} selectedItem={selectedItem} setItems={setItems} /> : <React.Fragment></React.Fragment>}
+                            {deleteModal === true ? <DeleteModal showDeleteModal={showDeleteModal} selectedItem={selectedItem} setItems={setItems} setDeleteToastify={setDeleteToastify} /> : <React.Fragment></React.Fragment>}
+                            {editModal === true ? <EditModal showEditModal={showEditModal} selectedItem={selectedItem} setItems={setItems} setEditToastify = {setEditToastify}/> : <React.Fragment></React.Fragment>}
+                            {addModal === true ? <AddModal showAddModal={showAddModal} selectedItem={selectedItem} setItems={setItems} setAddToastify={setAddToastify}/> : <React.Fragment></React.Fragment>}
                         </div>
                         </div>
                 </div>

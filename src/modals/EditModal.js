@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const EditModal = ({ showEditModal, selectedItem, setItems }) => {
+const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) => {
     let modalStyle = {
         display: 'block',
         backgroundColor: 'rgba(0,0,0,0.8)'
@@ -42,9 +42,9 @@ const EditModal = ({ showEditModal, selectedItem, setItems }) => {
             submitEdittedItem(imageUrl);
         }
 
-        setTimeout(()=> {
-            showEditModal(false);
-         }, 1500);  
+        
+        showEditModal(false);
+        setEditToastify(true);
         
     }
 

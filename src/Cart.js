@@ -3,6 +3,10 @@ import { useGlobalState } from './state/globalState';
 import Navbar from './components/Navbar';
 import axios from 'axios';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { placeOrderNotify } from './components/Toastify';
+
 const Cart = () => {
 
     const [id, setStudentID] = useState(0);
@@ -38,11 +42,14 @@ const Cart = () => {
                     console.log(err);
                 })
         })
+
+        placeOrderNotify();
     }
 
     return (
         <React.Fragment>
             <Navbar />
+            <ToastContainer/>
             <div className="container py-5">
                 <h3>Your Cart</h3>
                 <form onSubmit={handleSubmit}>
@@ -70,7 +77,7 @@ const Cart = () => {
                     <label htmlFor="studentID">Your Student ID:</label>
                     <input type="number" className="form-control" placeholder="######"
                         onChange={e => setStudentID(e.target.value)} />
-                    <button type="submit" className="btn btn-warning">Place Order</button>
+                    <button type="submit" className="btn btn-warning m-3">Place Order</button>
                 </form>
             </div>
         </React.Fragment>

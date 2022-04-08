@@ -3,6 +3,10 @@ import Accordion from "react-bootstrap/Accordion"
 import axios from "axios";
 import AdminNavbar from "./components/AdminNavbar";
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { deleteOrderNotify, approveOrderNotify } from './components/Toastify';
+
 function OrdersPage() {
 
     const [orders, setOrders] = useState([]);
@@ -20,14 +24,32 @@ function OrdersPage() {
                 console.log(err);
             })
         })
-        deleteOrder(id);
+        
+        axios.get(`http://127.0.0.1:5000/api/deleteOrder/${id}`)
+            .then(res => {
+                console.log(res);
+            })
+            .then(res => {
+                axios.get("http://127.0.0.1:5000/api/getOrders")
+                    .then(res => {
+                        setOrders(res.data);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
+            .catch(err => { console.log(err) });
+
         axios.get("http://127.0.0.1:5000/api/getOrders")
             .then(res => {
                 setOrders(res.data);
             })
             .catch(err => {
                 console.log(err);
-        })
+        });
+
+        
+        approveOrderNotify();
     }
 
     const deleteOrder = (id) => {
@@ -45,6 +67,8 @@ function OrdersPage() {
                     })
             })
             .catch(err => { console.log(err) });
+
+            deleteOrderNotify();
     }
 
     useEffect(() => {
@@ -65,6 +89,7 @@ function OrdersPage() {
     return (
         <div>
             <AdminNavbar />
+            <ToastContainer/>
             <div className="container py-5">
                 <div className="row">
                     <div className="col-2"></div>
@@ -94,7 +119,7 @@ function OrdersPage() {
                                                 })}
                                             </ul>
                                             <button type="button" className="btn btn-danger" onClick={() => deleteOrder(order.order_id)}>Delete</button>
-                                            <button type="button" className="btn btn-success" onClick={() => approveOrder(order.items, order.order_id)}>Approve</button>
+                                            <button type="button" className="btn btn-success" onClick={() => approveOrder(order.items, order.order_id) }>Approve</button>
                                         </Accordion.Body>
                                     </Accordion.Item>
                                 </Accordion>
