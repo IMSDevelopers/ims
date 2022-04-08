@@ -9,6 +9,7 @@ import './styles/App.css';
 import DeleteModal from "./modals/DeleteModal";
 import EditModal from "./modals/EditModal";
 import AddModal from "./modals/AddModal";
+
 import { useGlobalState } from "./state/globalState";
 
 function Home() {
@@ -23,6 +24,8 @@ function Home() {
     const [deleteModal, showDeleteModal] = useState(false);
     const [editModal, showEditModal] = useState(false);
     const [addModal, showAddModal] = useState(false);
+
+    const cc = useGlobalState("cart")[0];
 
     // initial load
     useEffect(() => {
@@ -60,10 +63,10 @@ function Home() {
 
     return (
         <div>
-            
             {!isAdmin ?
             <React.Fragment>
                 <Navbar />
+
                 <div className="container">
                     <div className="row g-3 p-3">
                         <div className="col-md-7 pt-2">
@@ -79,14 +82,12 @@ function Home() {
                             {filteredData.map(item => {
                                 return(
                                     <div className="col-lg-3 col-md-6 col-sm-12 align-self" key={item.id}>
-                                         
-                                        <Card 
-                                            name={item.name} 
-                                            description={item.description} 
-                                            quantity={item.quantity} 
-                                            urlImage={item.url_image}
-                                            setItems={setItems} />
-                                        
+                                        <div className="mb-4">
+                                            <Card 
+                                            item={item}
+                                            setItems={setItems}
+                                            cart={cc} />
+                                        </div>
                                     </div>
                                 );
                             })}

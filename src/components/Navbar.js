@@ -5,50 +5,38 @@ import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
 import { setGlobalState } from "../state/globalState";
 
-class Navbar extends React.Component {
+const Navbar = ({ history }) => {
 
-  redirectToLogin = () => {
-    const { history } = this.props;
-    if(history) history.push('/');
-  }
-
-  redirectToCart = () => {
-    const { history } = this.props;
+  const redirectToCart = () => {
     if(history) history.push('/cart');
   }
 
-  redirectToHome = () => {
-    const { history } = this.props;
-    if(history) history.push('/');
+  const redirectToAdminHome = () => {
+    setGlobalState("userState", true);
+    if (history) history.push('/');
   }
 
-  redirectToAdminHome = () => {
-    setGlobalState("userState", true);
-    console.log("THIS IS A STRONG MESSAGE!");
-    const { history } = this.props;
-    if(history) history.push('/');
-  }
- 
-  render(){
-    return (
-      <nav className="navbar navbar-expand-lg navbar-cbu ">
-        <div className="container-fluid ">
-          <button onClick={() => { this.redirectToHome() }} className="navbar-brand white-word" id="linkHome">Inventory Management System</button>
-        </div>
-          <button 
-            className="btn btn-warning me-3"
-            type="submit"
-            onClick={() => { this.redirectToCart() }}><AiOutlineShoppingCart />
-          </button>
-          <button 
-            className="btn btn-warning me-3"
-            onClick={() => { 
-            this.redirectToAdminHome()}}>
-              <AiOutlineUser />
-          </button>
-      </nav>
-    );
-  }
+  return (
+    <React.Fragment>
+    <nav className="navbar navbar-expand-lg navbar-cbu">
+      <div className="container-fluid ">
+        <button className="navbar-brand white-word" id="linkHome">Inventory Management System</button>
+      </div>
+      <button
+        className="btn btn-warning me-3"
+        type="submit"
+        onClick={() => redirectToCart()}>
+        <AiOutlineShoppingCart />
+      </button>
+      <button
+        className="btn btn-warning me-3"
+        onClick={() => redirectToAdminHome()}>
+        <AiOutlineUser />
+      </button>
+    </nav>
+    {/* {cartModal === true ? <CartModal showCartModal={showCartModal} cart={cc} /> : <React.Fragment></React.Fragment> } */}
+    </React.Fragment>
+  );
 }
 
 export default withRouter(Navbar);

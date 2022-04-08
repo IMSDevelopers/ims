@@ -4,6 +4,7 @@ const { setGlobalState, useGlobalState } = createGlobalState({
 
     // By default, the user is not an admin; true = admin, false = generic user
     userState: false,
+    cart: []
 });
 
 export { useGlobalState, setGlobalState };
