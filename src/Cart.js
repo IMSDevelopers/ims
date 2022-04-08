@@ -6,10 +6,10 @@ import axios from 'axios';
 const Cart = () => {
 
     const [id, setStudentID] = useState(0);
-    const cart = useGlobalState("cart")[0];
+    const [cart, setCart] = useGlobalState('cart');
 
     const generateOrderID = () => {
-        return Math.floor(Math.random() * 10000000)
+        return Math.floor(Math.random() * 10000000);
     }
 
     /*
@@ -34,6 +34,7 @@ const Cart = () => {
                 .then(res => {
                     console.log(res);
                 })
+                .then(() => setCart([]))
                 .catch(err => {
                     console.log(err);
                 })
