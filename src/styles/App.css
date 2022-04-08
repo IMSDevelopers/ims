@@ -26,21 +26,22 @@
     width: 40%;
 }
 
-.card {
-    width: 13rem;
-    height: 22rem; 
+.card-box {
+    width: 18rem;
+    height: 22rem;
     /*max-height: 20rem; */
     
 }
 
 .img{
     height:100%;
-    max-height:100px;
+    width: auto;
+    max-height:8rem;
 }
 
 .space-button{
     text-align: right;
-    
+
 }
 
 .custom-file-upload {

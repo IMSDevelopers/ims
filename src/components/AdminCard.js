@@ -30,7 +30,7 @@ const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) =>
     }
 
     return (
-        <div className="card">
+        <div className="card mb-4">
             <center>
                 
                 { item.url_image === '' ? 
@@ -44,17 +44,14 @@ const AdminCard = ({ item, showDeleteModal, showEditModal, setSelectedItem }) =>
                 <p className="card-text">Quantity available: <strong>{item.quantity}</strong></p>
                 </div>
 
-                <div className="bottom-card">
+                <div className="card-body text-center">
                     {/* edit */}
-                    <button type="button" className="btn btn-primary" onClick={() => selectEdit()}>
+                    <button type="button" className="btn btn-primary m-3" onClick={() => selectEdit()}>
                         <HiPencilAlt />
                     </button>
 
-                    {/* this adds spacing between the two buttons */}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
                     {/* delete */}
-                    <button type="button" className="btn btn-danger" onClick={() => selectDelete()}>
+                    <button type="button" className="btn btn-danger m-3" onClick={() => selectDelete()}>
                         <HiOutlineTrash />
                     </button>
                 </div>
