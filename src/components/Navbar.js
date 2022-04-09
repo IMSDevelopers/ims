@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { AiOutlineUser } from 'react-icons/ai';
 import { AiOutlineHome } from 'react-icons/ai';
@@ -6,9 +6,13 @@ import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
 import { setGlobalState } from "../state/globalState";
 
+import LoginModal from "../modals/LoginModal";
+
 let userPageState = "";
 
 const Navbar = ({ history }) => {
+
+  const [loginModal, showLoginModal] = useState(false);
 
   const redirectToCart = () => {
     if(history) history.push('/cart');
@@ -43,7 +47,7 @@ const Navbar = ({ history }) => {
   
         <button
           className="btn btn-warning me-3"
-          onClick={() => redirectToAdminHome()}>
+          onClick={() => showLoginModal(true)}>
           <AiOutlineUser />
         </button>
   
@@ -68,12 +72,12 @@ const Navbar = ({ history }) => {
   
         <button
           className="btn btn-warning me-3"
-          onClick={() => redirectToAdminHome()}>
+          onClick={() => showLoginModal(true)}>
           <AiOutlineUser />
         </button>
   
       </nav>
-      {/* {cartModal === true ? <CartModal showCartModal={showCartModal} cart={cc} /> : <React.Fragment></React.Fragment> } */}
+      {loginModal === true ? <LoginModal showLoginModal={showLoginModal}/> : <React.Fragment></React.Fragment> }
       </React.Fragment>
     );
   }
