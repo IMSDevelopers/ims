@@ -99,7 +99,7 @@ const AddModal = ({
                                 <label>Name:</label>
                                 <input type="text" className="form-control" value={name} onChange={e => setName(e.target.value)} />
                                 <label>Quantity:</label>
-                                <input type="number" className="form-control" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                                <input type="number" className="form-control" value={quantity} min={0} onChange={e => setQuantity(e.target.value)} />
                                 <label>Description:</label>
                                 <textarea className="form-control" value={description} onChange={e => setDescription(e.target.value)}></textarea>
                                 <br />
@@ -118,7 +118,7 @@ const AddModal = ({
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" onClick={() => showAddModal(false)}>Cancel</button>
-                        <button type="submit" className="btn btn-primary">Add</button>
+                        <button type="submit" className="btn btn-primary" disabled={quantity <= 0}>Add</button>
                     </div>
                     </form>
                 </div>
