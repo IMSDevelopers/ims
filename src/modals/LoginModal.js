@@ -29,11 +29,11 @@ const LoginModal = ({
                     <div className='modal-body'>
                         <div className="form-group">
                             <label>Enter Password:</label>
-                            <input type="text" className="form-control" onChange={e => setPassword(e.target.value)}/>
+                            <input type="password" className="form-control" onChange={e => setPassword(e.target.value)}/>
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" onClick={() => {
+                        <button type="button" className="btn btn-primary" onClick={() => {
                             if (password === "HocusPocusInventoryFocus89") { // Temp password, chnage this
                                 redirectToAdminHome();
                             }
