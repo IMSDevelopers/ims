@@ -95,7 +95,7 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
                                 <label>Name:</label>
                                 <input type="text" className="form-control" value={name} onChange={e => setName(e.target.value)} />
                                 <label>Quantity:</label>
-                                <input type="number" className="form-control" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                                <input type="number" className="form-control" value={quantity} min={0} onChange={e => setQuantity(e.target.value)} />
                                 <label>Description:</label>
                                 <textarea className="form-control" value={description} onChange={e => setDescription(e.target.value)}></textarea>
                                 <br />
