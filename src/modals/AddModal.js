@@ -4,7 +4,8 @@ import '../styles/App.css';
 
 const AddModal = ({ 
     showAddModal, 
-    setItems 
+    setItems,
+    setAddToastify 
 }) => {
     let modalStyle = {
         display: 'block',
@@ -45,10 +46,10 @@ const AddModal = ({
         } else {
             submitItem(pictureUrl)
         }
-         
-        setTimeout(()=> {
-            showAddModal(false);
-         }, 1500);        
+
+        showAddModal(false);
+        setAddToastify(true);
+               
     }
 
 
@@ -77,7 +78,6 @@ const AddModal = ({
         .catch(err => {
             console.log('ERROR:', err);
         })
-
     }
 
     return (

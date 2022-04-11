@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import '../styles/App.css';
 import CBUSquareLogo from '../assets/cbuSquare.png';
 
-const Card = ({ item, cart }) => {
+const Card = ({ item, cart, setShowToastify }) => {
 
     const [number, setNumber] = useState(0);
+    
 
     const handleChange = (e) => {
         //allows only numbers to be inputted
@@ -26,6 +27,7 @@ const Card = ({ item, cart }) => {
             description: item.description,
             num_ordered: number
         })
+        setShowToastify(true);
     }
 
     const substractionQuantity = (e) => {
@@ -42,12 +44,12 @@ const Card = ({ item, cart }) => {
             <center>
                 <div className="card-body">
                 { item.url_image === '' ? 
-                    <img src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
+                    <img className="img-fluid rounded-start img" src={ CBUSquareLogo } alt="Item figure" width={"50%"} height={"50%"}/>  
                     :
-                    <img src={ item.url_image } alt="Item figure" width={"50%"} height={"50%"}/>
+                    <img className="img-fluid rounded-start img" src={ item.url_image } alt="Item figure" width={"50%"} height={"50%"}/>
                     }
-                <h2>{item.name}</h2>
-                <h4 className="card-title">{item.description}</h4>
+                <h4 className="card-title">{item.name}</h4>
+                <p className="card-text">{item.description}</p>
                 <p className="card-text">Quantity available: <strong>{item.quantity}</strong></p>
                  
                 <div className="card-text">
