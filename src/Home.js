@@ -93,8 +93,7 @@ function Home() {
 
     return (
         <div>
-            {!isAdmin ?
-            
+            {!isAdmin ?         
             
             <React.Fragment>
                 <Navbar />
@@ -130,6 +129,7 @@ function Home() {
                 </div>
                 </React.Fragment>
                 :
+
                 <React.Fragment>
                     
                 <AdminNavbar showAddModal={showAddModal}/>

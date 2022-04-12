@@ -6,6 +6,7 @@ import AdminNavbar from "./components/AdminNavbar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteOrderNotify, approveOrderNotify } from './components/Toastify';
+import { useGlobalState } from "./state/globalState";
 
 function OrdersPage() {
 
@@ -88,48 +89,70 @@ function OrdersPage() {
 
     return (
         <div>
-            <AdminNavbar />
-            <ToastContainer/>
-            <div className="container py-5">
-                <div className="row">
-                    <div className="col-2"></div>
-                    <div className="col">
-                        {orders.map((order, i) => {
-                            return (
-                                <Accordion key={i}>
-                                    <Accordion.Item eventKey="0">
-                                        <Accordion.Header>
-                                            <strong>Order #:&nbsp;</strong>
-                                            {order.order_id}
-                                            <span className="badge bg-secondary">Placed by: {order.student_id} at {order.time_placed}</span>
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                            <ul className="list-group">
-                                                {order.items.map((item, i) => {
-                                                    return (
-                                                        <div>
-                                                            <li className="list-group-item" id={i}>
-                                                                <img src={item.url_image} className="img-thumbnail float-left" style={{ width: 50, height: 50 }} alt="item img"/>
-                                                                {item.item_name}
-                                                                <p>Num Ordered: {item.num_ordered}</p>
-                                                                <p>Qty: {item.quantity}</p>
-                                                            </li>
-                                                        </div>
-                                                    )
-                                                })}
-                                            </ul>
-                                            <button type="button" className="btn btn-danger" onClick={() => deleteOrder(order.order_id)}>Delete</button>
-                                            <button type="button" className="btn btn-success" onClick={() => approveOrder(order.items, order.order_id) }>Approve</button>
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
+            {useGlobalState("userState")[0] === true ? 
+            
+            <React.Fragment>
+                <AdminNavbar />
+                <ToastContainer/>
+                <div className="container py-5">
+                    <div className="row">
+                        <div className="col-2"></div>
+                        <div className="col">
+                            {orders.map((order, i) => {
+                                return (
+                                    <Accordion key={i}>
+                                        <Accordion.Item eventKey="0">
+                                            <Accordion.Header>
+                                                <strong>Order #:&nbsp;</strong>
+                                                {order.order_id}
+                                                <span className="badge bg-secondary">Placed by: {order.student_id} at {order.time_placed}</span>
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                                <ul className="list-group">
+                                                    {order.items.map((item, i) => {
+                                                        return (
+                                                            <div>
+                                                                <li className="list-group-item" id={i}>
+                                                                    <img src={item.url_image} className="img-thumbnail float-left" style={{ width: 50, height: 50 }} alt="item img"/>
+                                                                    {item.item_name}
+                                                                    <p>Num Ordered: {item.num_ordered}</p>
+                                                                    <p>Qty: {item.quantity}</p>
+                                                                </li>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </ul>
+                                                <button type="button" className="btn btn-danger" onClick={() => deleteOrder(order.order_id)}>Delete</button>
+                                                <button type="button" className="btn btn-success" onClick={() => approveOrder(order.items, order.order_id) }>Approve</button>
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
 
-                            )
-                        })}
+                                )
+                            })}
+                        </div>
+                        <div className="col-2"></div>
                     </div>
-                    <div className="col-2"></div>
                 </div>
-            </div>
+            </React.Fragment>
+
+            : 
+
+            <React.Fragment>
+                <div className="container py-5">
+                </div>
+                <div className="container py-5">
+                </div>
+                <div className="container py-5">
+                </div>
+                <div className="d-flex align-items-center justify-content-center" >
+                    <h1>Forbidden</h1>
+                </div>
+                
+            </React.Fragment>
+            
+            }
+            
         </div>
     )
 }

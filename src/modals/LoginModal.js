@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { setGlobalState } from "../state/globalState";
+import { Pwrd } from '../components/AdminLoginPrd';
 
 const LoginModal = ({ 
     showLoginModal,
@@ -34,7 +35,7 @@ const LoginModal = ({
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-primary" onClick={() => {
-                            if (password === "HocusPocusInventoryFocus89") { // Temp password, chnage this
+                            if (password === Pwrd) { // Temp password, chnage this
                                 redirectToAdminHome();
                             }
                         }}>Submit</button>
