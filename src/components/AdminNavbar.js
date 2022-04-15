@@ -2,6 +2,9 @@ import React from 'react';
 import '../styles/App.css'
 import { withRouter } from 'react-router-dom';
 import { setGlobalState } from "../state/globalState";
+import { adminLogOutNotify } from "./Toastify"
+import { toast } from 'react-toastify';
+import { waitFor } from '@testing-library/react';
 
 let pageState = "";
 
@@ -21,6 +24,8 @@ const AdminNavbar = ({ history }) => {
 
     const redirectToGenericHome = () => {
         // If we are redirecting to the user homepage, we set userState to 'false'
+        toast.dismiss();
+        adminLogOutNotify();
         setGlobalState("userState", false);
         if(history) history.push('/');
         pageState = "home";

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { setGlobalState } from "../state/globalState";
 import { Pwrd } from '../components/AdminLoginPrd';
+import { adminLoginNotify } from '../components/Toastify';
 
 const LoginModal = ({ 
     showLoginModal,
@@ -9,6 +10,7 @@ const LoginModal = ({
 
     const redirectToAdminHome = () => {
         setGlobalState("userState", true);
+        adminLoginNotify();
         if (history) history.push('/');
     }
 
@@ -19,6 +21,13 @@ const LoginModal = ({
 
     const [password, setPassword] = useState("");
 
+    const onFormSubmit = e => {
+        e.preventDefault();
+        if (password === Pwrd) {
+            redirectToAdminHome();
+        }
+    }
+
     return (
         <div className="modal show fade" style={modalStyle}>
             <div className="modal-dialog">
@@ -27,6 +36,7 @@ const LoginModal = ({
                         <h5 className="modal-title">Admin Login</h5>
                         <button type="button" className="btn-close" onClick={() => showLoginModal(false)}></button>
                     </div>
+                    <form onSubmit={onFormSubmit}>
                     <div className='modal-body'>
                         <div className="form-group">
                             <label>Enter Password:</label>
@@ -34,13 +44,10 @@ const LoginModal = ({
                         </div>
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-primary" onClick={() => {
-                            if (password === Pwrd) { // Temp password, chnage this
-                                redirectToAdminHome();
-                            }
-                        }}>Submit</button>
+                        <button type="submit" className="btn btn-primary">Submit</button>
                         <button type="button" className="btn btn-secondary" onClick={() => showLoginModal(false)}>Cancel</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

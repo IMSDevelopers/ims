@@ -83,3 +83,29 @@ export const placeOrderNotify = () => toast.success('Order Placed.', {
     draggable: true,
     progress: undefined,
     });
+
+//Admin login notify
+
+export const adminLoginNotify = () => toast.success('Logged in as Administrator', {
+        toastId: 'adminLogin',
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
+
+//Admin login notify
+
+export const adminLogOutNotify = () => toast.success('Signed in as User', {
+        toastId: 'adminLogin',
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        });
