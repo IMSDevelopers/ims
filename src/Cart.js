@@ -61,12 +61,13 @@ const Cart = () => {
                             <ul className="list-group">
                                 {(cart.length > 0) ?
                                     cart.map((item, id) => {
+                                        console.log(item);
                                         return (
                                             <React.Fragment>
                                                 <li className="list-group-item" key={id}>
                                                     <strong>{item.item_name}</strong>
-                                                    <br />
-                                                    Num ordered: {item.num_ordered}
+                                                    <p>{item.description}</p>
+                                                    Qty: {item.num_ordered}
                                                 </li>
                                             </React.Fragment>
                                         )
