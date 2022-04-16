@@ -35,7 +35,7 @@ const AddModal = ({
         if( selectFile != null){
             data.append("file", selectFile);
             //Upload picture and get the Object URL
-            axios.post(`http://${remote}/api/upload`, data, {
+            axios.post(`https://${remote}/api/upload`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

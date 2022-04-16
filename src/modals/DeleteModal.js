@@ -13,13 +13,13 @@ const DeleteModal = ({
         backgroundColor: 'rgba(0,0,0,0.8)'
     }
     const deleteItem = () => {
-        axios.get(`http://${remote}/api/deleteItem/${selectedItem.id}`)
+        axios.get(`https://${remote}/api/deleteItem/${selectedItem.id}`)
             .then(res => {
                 console.log(res);
                 console.log('Deleted: ', selectedItem.name);
             })
             .then(res => {
-                axios.get(`http://${remote}/api/getItems`)
+                axios.get(`https://${remote}/api/getItems`)
                 .then(res => {
                     setItems(res.data);
                 })

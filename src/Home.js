@@ -40,7 +40,7 @@ function Home() {
 
     // initial load
     useEffect(() => {
-        axios.get(`http://${remote}/api/getItems`)
+        axios.get(`https://${remote}/api/getItems`)
             .then(res => {
                 //console.log(res.data);
                 setItems(res.data);

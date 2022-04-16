@@ -29,7 +29,7 @@ const Cart = () => {
         let random_gen_id = generateOrderID();
         let time_placed = getTime();
         cart.forEach(item => {
-            axios.post(`http://${remote}/api/postOrder`, {
+            axios.post(`https://${remote}/api/postOrder`, {
                 order_id: random_gen_id,
                 item_id: item.item_id,
                 num_ordered: item.num_ordered,

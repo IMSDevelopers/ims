@@ -16,7 +16,7 @@ function OrdersPage() {
     const approveOrder = (items, id) => {
         items.forEach(item => {
             console.log(item);
-            axios.put(`http://${remote}/api/updateQuantity/${item.item_id}`, {
+            axios.put(`https://${remote}/api/updateQuantity/${item.item_id}`, {
                 num_ordered: item.num_ordered
             })
             .then(res => {
@@ -27,12 +27,12 @@ function OrdersPage() {
             })
         })
         
-        axios.get(`http://${remote}/api/deleteOrder/${id}`)
+        axios.get(`https://${remote}/api/deleteOrder/${id}`)
             .then(res => {
                 console.log(res);
             })
             .then(res => {
-                axios.get(`http://${remote}/api/getOrders`)
+                axios.get(`https://${remote}/api/getOrders`)
                     .then(res => {
                         setOrders(res.data);
                     })
@@ -42,7 +42,7 @@ function OrdersPage() {
             })
             .catch(err => { console.log(err) });
 
-        axios.get(`http://${remote}/api/getOrders`)
+        axios.get(`https://${remote}/api/getOrders`)
             .then(res => {
                 setOrders(res.data);
             })
@@ -55,12 +55,12 @@ function OrdersPage() {
     }
 
     const deleteOrder = (id) => {
-        axios.get(`http://${remote}/api/deleteOrder/${id}`)
+        axios.get(`https://${remote}/api/deleteOrder/${id}`)
             .then(res => {
                 console.log(res);
             })
             .then(res => {
-                axios.get(`http://${remote}/api/getOrders`)
+                axios.get(`https://${remote}/api/getOrders`)
                     .then(res => {
                         setOrders(res.data);
                     })
@@ -74,7 +74,7 @@ function OrdersPage() {
     }
 
     useEffect(() => {
-        axios.get(`http://${remote}/api/getOrders`)
+        axios.get(`https://${remote}/api/getOrders`)
             .then(res => {
                 setOrders(res.data);
                 console.log(res.data);
