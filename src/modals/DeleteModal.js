@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { remote } from "../ip"
 
 const DeleteModal = ({ 
     showDeleteModal, 
@@ -12,13 +13,13 @@ const DeleteModal = ({
         backgroundColor: 'rgba(0,0,0,0.8)'
     }
     const deleteItem = () => {
-        axios.get(`http://127.0.0.1:5000/api/deleteItem/${selectedItem.id}`)
+        axios.get(`http://${remote}/api/deleteItem/${selectedItem.id}`)
             .then(res => {
                 console.log(res);
                 console.log('Deleted: ', selectedItem.name);
             })
             .then(res => {
-                axios.get('http://127.0.0.1:5000/api/getItems')
+                axios.get(`http://${remote}/api/getItems`)
                 .then(res => {
                     setItems(res.data);
                 })

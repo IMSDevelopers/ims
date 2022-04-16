@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { remote } from "../ip"
 
 const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) => {
     let modalStyle = {
@@ -29,7 +30,7 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
         if( selectFile != null){
             data.append("file", selectFile);
             //Upload picture and get the Object URL
-            axios.post("http://127.0.0.1:5000/api/upload", data, {
+            axios.post(`http://${remote}/api/upload`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -49,7 +50,7 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
     }
 
     const submitEdittedItem = (url) => {
-        axios.put(`http://127.0.0.1:5000/api/editItem/${selectedItem.id}`, {
+        axios.put(`http://${remote}/api/editItem/${selectedItem.id}`, {
             name: name,
             quantity: quantity,
             description: description,
@@ -60,7 +61,7 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
             setShowAlert(true);
         })
         .then(res => {
-            axios.get('http://127.0.0.1:5000/api/getItems')
+            axios.get(`http://${remote}/api/getItems`)
             .then(res => {
                 setItems(res.data);
             })

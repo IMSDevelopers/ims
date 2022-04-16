@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteOrderNotify, approveOrderNotify } from './components/Toastify';
 import { useGlobalState } from "./state/globalState";
+import { remote } from "./ip"
 
 function OrdersPage() {
 
@@ -15,7 +16,7 @@ function OrdersPage() {
     const approveOrder = (items, id) => {
         items.forEach(item => {
             console.log(item);
-            axios.put(`http://127.0.0.1:5000/api/updateQuantity/${item.item_id}`, {
+            axios.put(`http://${remote}/api/updateQuantity/${item.item_id}`, {
                 num_ordered: item.num_ordered
             })
             .then(res => {
@@ -26,12 +27,12 @@ function OrdersPage() {
             })
         })
         
-        axios.get(`http://127.0.0.1:5000/api/deleteOrder/${id}`)
+        axios.get(`http://${remote}/api/deleteOrder/${id}`)
             .then(res => {
                 console.log(res);
             })
             .then(res => {
-                axios.get("http://127.0.0.1:5000/api/getOrders")
+                axios.get(`http://${remote}/api/getOrders`)
                     .then(res => {
                         setOrders(res.data);
                     })
@@ -41,7 +42,7 @@ function OrdersPage() {
             })
             .catch(err => { console.log(err) });
 
-        axios.get("http://127.0.0.1:5000/api/getOrders")
+        axios.get(`http://${remote}/api/getOrders`)
             .then(res => {
                 setOrders(res.data);
             })
@@ -54,12 +55,12 @@ function OrdersPage() {
     }
 
     const deleteOrder = (id) => {
-        axios.get(`http://127.0.0.1:5000/api/deleteOrder/${id}`)
+        axios.get(`http://${remote}/api/deleteOrder/${id}`)
             .then(res => {
                 console.log(res);
             })
             .then(res => {
-                axios.get("http://127.0.0.1:5000/api/getOrders")
+                axios.get(`http://${remote}/api/getOrders`)
                     .then(res => {
                         setOrders(res.data);
                     })
@@ -73,7 +74,7 @@ function OrdersPage() {
     }
 
     useEffect(() => {
-        axios.get("http://127.0.0.1:5000/api/getOrders")
+        axios.get(`http://${remote}/api/getOrders`)
             .then(res => {
                 setOrders(res.data);
                 console.log(res.data);

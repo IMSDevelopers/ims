@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../styles/App.css';
+import { remote } from "../ip"
 
 const AddModal = ({ 
     showAddModal, 
@@ -34,7 +35,7 @@ const AddModal = ({
         if( selectFile != null){
             data.append("file", selectFile);
             //Upload picture and get the Object URL
-            axios.post("http://127.0.0.1:5000/api/upload", data, {
+            axios.post(`http://${remote}/api/upload`, data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -55,7 +56,7 @@ const AddModal = ({
 
     const submitItem = (url) =>{
 
-        axios.post("http://127.0.0.1:5000/api/postItem", {
+        axios.post(`http://${remote}/api/postItem`, {
             name: name,
             quantity: quantity,
             description: description,
@@ -66,7 +67,7 @@ const AddModal = ({
             setShowAlert(true);           
         })
         .then(res => {
-            axios.get('http://127.0.0.1:5000/api/getItems')
+            axios.get(`http://${remote}/api/getItems`)
             .then(res => {
                 setItems(res.data);
                 

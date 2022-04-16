@@ -6,6 +6,7 @@ import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { placeOrderNotify } from './components/Toastify';
+import { remote } from "./ip"
 
 const Cart = () => {
 
@@ -28,7 +29,7 @@ const Cart = () => {
         let random_gen_id = generateOrderID();
         let time_placed = getTime();
         cart.forEach(item => {
-            axios.post("http://127.0.0.1:5000/api/postOrder", {
+            axios.post(`http://${remote}/api/postOrder`, {
                 order_id: random_gen_id,
                 item_id: item.item_id,
                 num_ordered: item.num_ordered,
