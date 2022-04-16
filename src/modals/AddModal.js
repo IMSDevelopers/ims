@@ -41,8 +41,12 @@ const AddModal = ({
                 },
             })
             .then(res => {
+                console.log("RES:", res);
                 pictureUrl = res.data;
                 submitItem(pictureUrl)
+            })
+            .catch(err => {
+                console.log("ERR:", err);
             })
         } else {
             submitItem(pictureUrl)

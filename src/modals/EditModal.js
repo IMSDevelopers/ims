@@ -42,8 +42,6 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
         } else {
             submitEdittedItem(imageUrl);
         }
-
-        
         showEditModal(false);
         setEditToastify(true);
         
