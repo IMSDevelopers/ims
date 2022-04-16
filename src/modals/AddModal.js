@@ -53,7 +53,6 @@ const AddModal = ({
                
     }
 
-
     const submitItem = (url) =>{
 
         axios.post(`http://${remote}/api/postItem`, {
