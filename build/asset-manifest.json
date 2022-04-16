@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5db266d5.chunk.css",
+    "main.js": "/static/js/main.73cf9eec.chunk.js",
+    "main.js.map": "/static/js/main.73cf9eec.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.beda9f0f.js",
+    "runtime-main.js.map": "/static/js/runtime-main.beda9f0f.js.map",
+    "static/css/2.f4c56af9.chunk.css": "/static/css/2.f4c56af9.chunk.css",
+    "static/js/2.8108d7aa.chunk.js": "/static/js/2.8108d7aa.chunk.js",
+    "static/js/2.8108d7aa.chunk.js.map": "/static/js/2.8108d7aa.chunk.js.map",
+    "static/js/3.32754dfa.chunk.js": "/static/js/3.32754dfa.chunk.js",
+    "static/js/3.32754dfa.chunk.js.map": "/static/js/3.32754dfa.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.f4c56af9.chunk.css.map": "/static/css/2.f4c56af9.chunk.css.map",
+    "static/css/main.5db266d5.chunk.css.map": "/static/css/main.5db266d5.chunk.css.map",
+    "static/js/2.8108d7aa.chunk.js.LICENSE.txt": "/static/js/2.8108d7aa.chunk.js.LICENSE.txt",
+    "static/media/cbuSquare.18d05d0c.png": "/static/media/cbuSquare.18d05d0c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.beda9f0f.js",
+    "static/css/2.f4c56af9.chunk.css",
+    "static/js/2.8108d7aa.chunk.js",
+    "static/css/main.5db266d5.chunk.css",
+    "static/js/main.73cf9eec.chunk.js"
+  ]
+}
