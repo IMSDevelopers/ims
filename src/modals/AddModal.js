@@ -59,7 +59,7 @@ const AddModal = ({
 
     const submitItem = (url) =>{
 
-        axios.post(`http://${remote}/api/postItem`, {
+        axios.post(`https://${remote}/api/postItem`, {
             name: name,
             quantity: quantity,
             description: description,
@@ -70,7 +70,7 @@ const AddModal = ({
             setShowAlert(true);           
         })
         .then(res => {
-            axios.get(`http://${remote}/api/getItems`)
+            axios.get(`https://${remote}/api/getItems`)
             .then(res => {
                 setItems(res.data);
                 
