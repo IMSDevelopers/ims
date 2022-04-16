@@ -74,8 +74,6 @@ const EditModal = ({ showEditModal, selectedItem, setItems, setEditToastify }) =
         })
     }
 
-    
-
     return (
         <div className="modal show fade" style={modalStyle}>
             {showAlert && (
