@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useGlobalState } from './state/globalState';
 import Navbar from './components/Navbar';
 import axios from 'axios';
+import { HiOutlineTrash } from 'react-icons/hi';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,6 +15,19 @@ const Cart = () => {
 
     const generateOrderID = () => {
         return Math.floor(Math.random() * 10000000);
+    }
+
+    const deleteCartItem = (id) => {
+        let newCart = [];
+        // Add every item except for the one we want to delete to the new cart
+        cart.forEach(function(item) {
+            if (item != cart.at(id)) {
+                newCart.push(item)
+            }
+        });
+
+        // Update the cart
+        setCart(newCart)
     }
 
     /*
@@ -46,7 +60,7 @@ const Cart = () => {
 
         placeOrderNotify();
     }
-
+    
     return (
         <React.Fragment>
             <Navbar />
@@ -61,13 +75,15 @@ const Cart = () => {
                             <ul className="list-group">
                                 {(cart.length > 0) ?
                                     cart.map((item, id) => {
-                                        console.log(item);
                                         return (
                                             <React.Fragment>
                                                 <li className="list-group-item" key={id}>
                                                     <strong>{item.item_name}</strong>
                                                     <p>{item.description}</p>
                                                     Qty: {item.num_ordered}
+                                                    <button type="button" className="btn btn-danger m-3" onClick={() => deleteCartItem(id)}>
+                                                        <HiOutlineTrash />
+                                                    </button>
                                                 </li>
                                             </React.Fragment>
                                         )
