@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGlobalState } from './state/globalState';
 import Navbar from './components/Navbar';
 import axios from 'axios';
@@ -17,22 +17,18 @@ const Cart = () => {
         return Math.floor(Math.random() * 10000000);
     }
 
-    const deleteCartItem = (id) => {
-        let newCart = [];
-        // Add every item except for the one we want to delete to the new cart
-        cart.forEach(function(item) {
-            if (item != cart.at(id)) {
-                newCart.push(item)
-            }
-        });
+    const deleteCartItem = (item) => {
+        let i = cart.indexOf(item);
+        if (i !== -1) {
+            cart.splice(i, 1);
+        }
 
-        // Update the cart
-        setCart(newCart)
+        setCart([...cart]);
     }
 
-    /*
-        @TODO: Make this look less ugly!
-    */
+    // rerender when cart changes
+    useEffect(() => {}, [cart])
+
     const getTime = () => {
         return new Date().toISOString().slice(0, 10).replace('T', ' ');
     }
@@ -81,7 +77,7 @@ const Cart = () => {
                                                     <strong>{item.item_name}</strong>
                                                     <p>{item.description}</p>
                                                     Qty: {item.num_ordered}
-                                                    <button type="button" className="btn btn-danger m-3" onClick={() => deleteCartItem(id)}>
+                                                    <button type="button" className="btn btn-danger m-3" onClick={() => deleteCartItem(item)}>
                                                         <HiOutlineTrash />
                                                     </button>
                                                 </li>
