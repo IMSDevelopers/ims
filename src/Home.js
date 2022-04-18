@@ -16,6 +16,8 @@ import {notify, deleteNotify, editNotify, addNotify } from './components/Toastif
 
 import { useGlobalState } from "./state/globalState";
 
+import { remote } from "./ip"
+
 function Home() {
 
     // We use this hook to keep track of the state of our home page
@@ -38,7 +40,7 @@ function Home() {
 
     // initial load
     useEffect(() => {
-        axios.get('http://127.0.0.1:5000/api/getItems')
+        axios.get(`https://${remote}/api/getItems`)
             .then(res => {
                 //console.log(res.data);
                 setItems(res.data);
