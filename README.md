@@ -131,6 +131,8 @@ The result:
 In order to log in as an admin, the password which is used to verify the user's permissions must be set.
 The password to log in as an admin will be stored in a file called `AdminLoginPrd.js` in the path `src\components\AdminLoginPrd.js`.
 
+(If you cannot find the `AdminLoginPrd.js` file along the above path then you must make it in order for the site to function properly)
+
 The `AdminLoginPrd.js` file should only be 1 line and have this format:
 
 ![image](https://user-images.githubusercontent.com/54819720/163743431-800233e5-600e-4987-92d8-216545dd2fa4.png)
